@@ -14,7 +14,8 @@
     "check": "npm run typecheck && npm run format:check && npm run lint:md && npm test",
     "log": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts log",
     "build": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts build",
-    "summary": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts summary"
+    "summary": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts summary",
+    "serve": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/serve.ts"
   },
   "devDependencies": {
     "@types/node": "^26.1.2",

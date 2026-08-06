@@ -117,6 +117,18 @@ export function buildDashboardHtml(data: DashboardData): string {
   .md pre { background: #f1f5f9; padding: 12px; border-radius: 8px; overflow-x: auto; }
   .md a { color: #2563eb; }
   .md blockquote { border-left: 3px solid #cbd5e1; margin: 8px 0; padding: 2px 12px; color: #475569; }
+  .md table { display: block; overflow-x: auto; }
+  @media (max-width: 640px) {
+    header { padding: 14px 16px; }
+    main { padding: 10px; }
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .card .value { font-size: 18px; }
+    .chart-box { height: 220px; }
+    .tabs { flex-wrap: wrap; }
+    .tab { flex: 1 1 40%; text-align: center; padding: 8px 4px; font-size: 12px; }
+    section { padding: 12px; }
+    section table { display: block; overflow-x: auto; }
+  }
 </style>
 </head>
 <body>

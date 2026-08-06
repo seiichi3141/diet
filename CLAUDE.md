@@ -37,6 +37,9 @@ node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts
 
 # ターミナルで簡易サマリ
 node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts summary
+
+# ローカルサーバー起動（スマホから見る場合。同じWi-Fiで http://<PCのIP>:8787 を開く）
+npm run serve
 ```
 
 ## 食事のカロリー・PFC 推定ルール
