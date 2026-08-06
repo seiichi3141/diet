@@ -95,3 +95,9 @@ test('タブ切り替えの構造がある', () => {
 test('レシピ集のMarkdownがHTMLに埋め込まれる', () => {
   assert.ok(build().includes('テストレシピ集'), 'レシピ集が含まれる')
 })
+
+test('スマホ表示に対応している（viewportとモバイル用メディアクエリ）', () => {
+  const html = build()
+  assert.match(html, /name="viewport"/)
+  assert.match(html, /@media\s*\(max-width/)
+})
