@@ -5,11 +5,11 @@
   "type": "module",
   "description": "減量・体力増強プロジェクトの記録・可視化ツール",
   "scripts": {
-    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "log": "node --experimental-strip-types src/cli.ts log",
-    "build": "node --experimental-strip-types src/cli.ts build",
-    "summary": "node --experimental-strip-types src/cli.ts summary"
+    "log": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts log",
+    "build": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts build",
+    "summary": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts summary"
   },
   "devDependencies": {
     "@types/node": "^26.1.2",
