@@ -3,7 +3,7 @@
 このプロジェクトは個人の減量・体力増強の記録・可視化システム。
 計画の全体像は [plan.md](plan.md)、献立と買い物リストは [menu.md](menu.md) を参照。
 
-公開ダッシュボード: **https://blog.seiichirou.jp/diet/**（GitHub Pages。main に push すると自動公開）
+公開ダッシュボード: **<https://blog.seiichirou.jp/diet/>**（GitHub Pages。main に push すると自動公開）
 
 ## 会話
 
