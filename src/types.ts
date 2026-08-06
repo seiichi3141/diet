@@ -50,4 +50,5 @@ export interface DashboardData {
   generatedAt: string
   planMd: string
   menuMd: string
+  recipesMd: string
 }

@@ -50,6 +50,7 @@ node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts
 
 - 「今日の献立は？」→ menu.md の今週メニューから、曜日と食材の消費順に沿って提案
 - 「買い物リストは？」→ menu.md の買い物リストを提示
+- 「○○の作り方は？」→ recipes.md の該当レシピを提示
 - 「進捗どう？」→ `summary` を実行し、計画ペースとの比較も添えて報告
 
 ## 開発ルール

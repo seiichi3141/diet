@@ -55,6 +55,7 @@ export function buildDashboardHtml(data: DashboardData): string {
     goalDate: profile.goalDate,
     planMd: data.planMd,
     menuMd: data.menuMd,
+    recipesMd: data.recipesMd,
   }).replaceAll('</', '<\\/')
 
   const exerciseRows = exercises
@@ -126,6 +127,7 @@ export function buildDashboardHtml(data: DashboardData): string {
     <button class="tab active" data-tab="dashboard">ダッシュボード</button>
     <button class="tab" data-tab="plan">計画書</button>
     <button class="tab" data-tab="menu">メニュー・買い物</button>
+    <button class="tab" data-tab="recipes">レシピ</button>
   </nav>
 </header>
 <main>
@@ -170,6 +172,10 @@ export function buildDashboardHtml(data: DashboardData): string {
   <div id="tab-menu" class="tab-pane" hidden>
     <section><article id="menu-content" class="md"></article></section>
   </div>
+
+  <div id="tab-recipes" class="tab-pane" hidden>
+    <section><article id="recipes-content" class="md"></article></section>
+  </div>
 </main>
 
 <script>
@@ -177,6 +183,7 @@ const DATA = ${embedded};
 
 document.getElementById('plan-content').innerHTML = marked.parse(DATA.planMd);
 document.getElementById('menu-content').innerHTML = marked.parse(DATA.menuMd);
+document.getElementById('recipes-content').innerHTML = marked.parse(DATA.recipesMd);
 
 document.querySelectorAll('.tab').forEach(function (btn) {
   btn.addEventListener('click', function () {

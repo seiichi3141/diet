@@ -154,6 +154,7 @@ function build(): void {
     generatedAt: new Date().toLocaleString('ja-JP'),
     planMd: readTextIfExists(join(ROOT, 'plan.md')),
     menuMd: readTextIfExists(join(ROOT, 'menu.md')),
+    recipesMd: readTextIfExists(join(ROOT, 'recipes.md')),
   }
   writeFileSync(DASHBOARD_PATH, buildDashboardHtml(data))
   console.log(`dashboard.html を更新しました（${DASHBOARD_PATH}）`)
