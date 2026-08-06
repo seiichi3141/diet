@@ -1,0 +1,11 @@
+{
+  "age": 46,
+  "sex": "male",
+  "heightCm": 178,
+  "startDate": "2026-08-06",
+  "startWeight": 77.4,
+  "goalWeight": 70,
+  "goalDate": "2026-11-06",
+  "dailyCalorieTarget": 1700,
+  "dailyProteinTarget": 115
+}
