@@ -54,7 +54,7 @@
 <body>
 <header>
   <h1>減量ダッシュボード</h1>
-  <div class="date">生成: 2026/8/6 19:59:52 ／ 目標: 70kg（2026-11-06）</div>
+  <div class="date">生成: 2026/8/7 6:53:03 ／ 目標: 70kg（2026-11-06）</div>
   <nav class="tabs">
     <a class="tab active" href="dashboard.html">ダッシュボード</a>
     <a class="tab" href="plan.html">計画書</a>
@@ -64,15 +64,15 @@
 </header>
 <main>
   <div class="cards">
-    <div class="card"><div class="label">現在の体重</div><div class="value">77.4kg</div><div class="sub">2026-08-06 体脂肪 24.6%</div></div>
-    <div class="card"><div class="label">開始から</div><div class="value">-0kg</div><div class="sub">開始 77.4kg</div></div>
-    <div class="card"><div class="label">目標まで</div><div class="value">残り 7.4kg</div><div class="sub">目標 70kg</div></div>
-    <div class="card"><div class="label">達成予測</div><div class="value" style="font-size:16px">—</div><div class="sub">データ不足またはトレンドなし</div></div>
+    <div class="card"><div class="label">現在の体重</div><div class="value">77.2kg</div><div class="sub">2026-08-07 体脂肪 23.9%</div></div>
+    <div class="card"><div class="label">開始から</div><div class="value">-0.2kg</div><div class="sub">開始 77.4kg</div></div>
+    <div class="card"><div class="label">目標まで</div><div class="value">残り 7.2kg</div><div class="sub">目標 70kg</div></div>
+    <div class="card"><div class="label">達成予測</div><div class="value" style="font-size:16px">2026-09-12</div><div class="sub">直近トレンドより</div></div>
   </div>
 
   <div class="progress-wrap">
-    <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
-    <div class="progress-text">進捗 0%（77.4kg → 77.4kg ／ 目標 70kg）</div>
+    <div class="progress-bar"><div class="progress-fill" style="width: 2.7%"></div></div>
+    <div class="progress-text">進捗 2.7%（77.4kg → 77.2kg ／ 目標 70kg）</div>
   </div>
 
   <section>
@@ -97,7 +97,7 @@
 </main>
 
 <script>
-const DATA = {"summary":{"current":77.4,"currentDate":"2026-08-06","currentBodyFat":24.6,"goal":70,"lost":0,"remaining":7.4,"percent":0,"projection":null,"calorieTarget":1700,"proteinTarget":115},"weightChart":[{"date":"2026-08-06","weight":77.4,"bodyFat":24.6,"planned":77.4}],"daily":[{"date":"2026-08-06","calories":1230,"protein":127}],"weeks":[{"weekStart":"2026-08-03","avgWeight":77.4}],"goalDate":"2026-11-06"};
+const DATA = {"summary":{"current":77.2,"currentDate":"2026-08-07","currentBodyFat":23.9,"goal":70,"lost":0.2,"remaining":7.2,"percent":2.7,"projection":"2026-09-12","calorieTarget":1700,"proteinTarget":115},"weightChart":[{"date":"2026-08-06","weight":77.4,"bodyFat":24.6,"planned":77.4},{"date":"2026-08-07","weight":77.2,"bodyFat":23.9,"planned":77.3}],"daily":[{"date":"2026-08-06","calories":1230,"protein":127}],"weeks":[{"weekStart":"2026-08-03","avgWeight":77.3}],"goalDate":"2026-11-06"};
 
 const weightCtx = document.getElementById('weight-chart');
 new Chart(weightCtx, {
