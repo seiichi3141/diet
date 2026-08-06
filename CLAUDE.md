@@ -3,6 +3,8 @@
 このプロジェクトは個人の減量・体力増強の記録・可視化システム。
 計画の全体像は [plan.md](plan.md)、献立と買い物リストは [menu.md](menu.md) を参照。
 
+公開ダッシュボード: **https://blog.seiichirou.jp/diet/**（GitHub Pages。main に push すると自動公開）
+
 ## 会話
 
 - 常に日本語で会話する
@@ -13,7 +15,8 @@
 
 1. 内容に応じた `log` コマンドを実行（下記コマンド一覧）
 2. `node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts build` でダッシュボードを再生成
-3. 記録内容を簡潔に報告（食事は推定カロリー・PFC を添え、推定であることを明示）
+3. 変更をコミットして `git push`（公開ダッシュボードに1分程度で反映）
+4. 記録内容を簡潔に報告（食事は推定カロリー・PFC を添え、推定であることを明示）
 
 報告が複数まとめて来た場合（例: 「朝食と昼食と体重」）はすべて記録してから build を1回実行する。
 
