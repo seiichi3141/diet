@@ -53,6 +53,8 @@ export function buildDashboardHtml(data: DashboardData): string {
     daily,
     weeks,
     goalDate: profile.goalDate,
+    planMd: data.planMd,
+    menuMd: data.menuMd,
   }).replaceAll('</', '<\\/')
 
   const exerciseRows = exercises
@@ -75,6 +77,7 @@ export function buildDashboardHtml(data: DashboardData): string {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>減量ダッシュボード</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
   :root { color-scheme: light; }
   * { box-sizing: border-box; }
@@ -99,14 +102,34 @@ export function buildDashboardHtml(data: DashboardData): string {
   th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e2e8f0; }
   th { color: #64748b; font-weight: 600; }
   .empty { color: #94a3b8; font-size: 13px; }
+  .tabs { display: flex; gap: 8px; margin-top: 14px; }
+  .tab { background: transparent; color: #cbd5e1; border: 1px solid #475569; border-radius: 999px; padding: 6px 16px; font-size: 13px; cursor: pointer; }
+  .tab.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+  .tab:hover { border-color: #93c5fd; }
+  .md h1 { font-size: 20px; margin: 8px 0 12px; }
+  .md h2 { font-size: 17px; margin: 22px 0 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+  .md h3 { font-size: 15px; margin: 16px 0 6px; }
+  .md p, .md li { font-size: 14px; line-height: 1.7; }
+  .md ul, .md ol { padding-left: 22px; }
+  .md table { margin: 8px 0 16px; }
+  .md code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  .md pre { background: #f1f5f9; padding: 12px; border-radius: 8px; overflow-x: auto; }
+  .md a { color: #2563eb; }
+  .md blockquote { border-left: 3px solid #cbd5e1; margin: 8px 0; padding: 2px 12px; color: #475569; }
 </style>
 </head>
 <body>
 <header>
   <h1>減量ダッシュボード</h1>
   <div class="date">生成: ${esc(data.generatedAt)} ／ 目標: ${profile.goalWeight}kg（${esc(profile.goalDate)}）</div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="dashboard">ダッシュボード</button>
+    <button class="tab" data-tab="plan">計画書</button>
+    <button class="tab" data-tab="menu">メニュー・買い物</button>
+  </nav>
 </header>
 <main>
+  <div id="tab-dashboard" class="tab-pane">
   <div class="cards">
     <div class="card"><div class="label">現在の体重</div><div class="value">${current}kg</div><div class="sub">${esc(summary.currentDate ?? '')}${summary.currentBodyFat !== null ? ` 体脂肪 ${summary.currentBodyFat}%` : ''}</div></div>
     <div class="card"><div class="label">開始から</div><div class="value">-${prog.lost}kg</div><div class="sub">開始 ${profile.startWeight}kg</div></div>
@@ -138,10 +161,29 @@ export function buildDashboardHtml(data: DashboardData): string {
     <h2>睡眠・体調メモ（直近10件）</h2>
     ${conditionRows ? `<table><thead><tr><th>日付</th><th>睡眠</th><th>メモ</th></tr></thead><tbody>${conditionRows}</tbody></table>` : '<p class="empty">まだ記録がありません</p>'}
   </section>
+  </div>
+
+  <div id="tab-plan" class="tab-pane" hidden>
+    <section><article id="plan-content" class="md"></article></section>
+  </div>
+
+  <div id="tab-menu" class="tab-pane" hidden>
+    <section><article id="menu-content" class="md"></article></section>
+  </div>
 </main>
 
 <script>
 const DATA = ${embedded};
+
+document.getElementById('plan-content').innerHTML = marked.parse(DATA.planMd);
+document.getElementById('menu-content').innerHTML = marked.parse(DATA.menuMd);
+
+document.querySelectorAll('.tab').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.tab').forEach(function (b) { b.classList.toggle('active', b === btn); });
+    document.querySelectorAll('.tab-pane').forEach(function (pane) { pane.hidden = pane.id !== 'tab-' + btn.dataset.tab; });
+  });
+});
 
 const weightCtx = document.getElementById('weight-chart');
 new Chart(weightCtx, {

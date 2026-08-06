@@ -48,4 +48,6 @@ export interface DashboardData {
   exercises: ExerciseRecord[]
   conditions: ConditionRecord[]
   generatedAt: string
+  planMd: string
+  menuMd: string
 }

@@ -1,4 +1,4 @@
-import { writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { parseArgs } from 'node:util'
@@ -152,9 +152,15 @@ function build(): void {
     exercises: readJsonl<ExerciseRecord>(DATA_DIR, 'exercises'),
     conditions: readJsonl<ConditionRecord>(DATA_DIR, 'conditions'),
     generatedAt: new Date().toLocaleString('ja-JP'),
+    planMd: readTextIfExists(join(ROOT, 'plan.md')),
+    menuMd: readTextIfExists(join(ROOT, 'menu.md')),
   }
   writeFileSync(DASHBOARD_PATH, buildDashboardHtml(data))
   console.log(`dashboard.html を更新しました（${DASHBOARD_PATH}）`)
+}
+
+function readTextIfExists(path: string): string {
+  return existsSync(path) ? readFileSync(path, 'utf8') : ''
 }
 
 function summary(): void {
