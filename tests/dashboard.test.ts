@@ -74,26 +74,21 @@ test('file:// で開けるよう外部データ参照を持たない（fetch不�
   assert.doesNotMatch(build(), /fetch\s*\(/)
 })
 
-test('計画書・メニューのMarkdownがHTMLに埋め込まれる', () => {
+test('他ページへのナビゲーションリンクがある（タブボタンではない）', () => {
   const html = build()
-  assert.ok(html.includes('テスト計画書'), '計画書が含まれる')
-  assert.ok(html.includes('テスト献立'), 'メニューが含まれる')
+  assert.ok(html.includes('href="plan.html"'))
+  assert.ok(html.includes('href="menu.html"'))
+  assert.ok(html.includes('href="recipes.html"'))
+  assert.match(html, /<a class="tab active" href="dashboard\.html">/)
+  assert.doesNotMatch(html, /<button class="tab"/)
 })
 
-test('Markdownレンダラ（marked）をCDNから読み込む', () => {
-  assert.match(build(), /cdn[^"']*marked/i)
-})
-
-test('タブ切り替えの構造がある', () => {
+test('Markdown本文はダッシュボードに埋め込まない（各ページに分離）', () => {
   const html = build()
-  assert.match(html, /id="tab-dashboard"/)
-  assert.match(html, /id="tab-plan"/)
-  assert.match(html, /id="tab-menu"/)
-  assert.match(html, /id="tab-recipes"/)
-})
-
-test('レシピ集のMarkdownがHTMLに埋め込まれる', () => {
-  assert.ok(build().includes('テストレシピ集'), 'レシピ集が含まれる')
+  assert.ok(!html.includes('テスト計画書'), '計画書は含まない')
+  assert.ok(!html.includes('テスト献立'), '献立は含まない')
+  assert.ok(!html.includes('テストレシピ集'), 'レシピ集は含まない')
+  assert.doesNotMatch(html, /marked/)
 })
 
 test('スマホ表示に対応している（viewportとモバイル用メディアクエリ）', () => {
