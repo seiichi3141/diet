@@ -40,6 +40,8 @@ function build(): string {
     exercises: [{ date: '2026-08-06', type: '卓球', minutes: 90 }],
     conditions: [{ date: '2026-08-06', sleepHours: 6.5, note: '良好' }],
     generatedAt: '2026-08-07T09:00:00',
+    planMd: '# テスト計画書\n\nこれは計画です',
+    menuMd: '# テスト献立\n\nこれは献立です',
   })
 }
 
@@ -69,4 +71,21 @@ test('グラフ用canvasと進捗表示がある', () => {
 
 test('file:// で開けるよう外部データ参照を持たない（fetch不使用）', () => {
   assert.doesNotMatch(build(), /fetch\s*\(/)
+})
+
+test('計画書・メニューのMarkdownがHTMLに埋め込まれる', () => {
+  const html = build()
+  assert.ok(html.includes('テスト計画書'), '計画書が含まれる')
+  assert.ok(html.includes('テスト献立'), 'メニューが含まれる')
+})
+
+test('Markdownレンダラ（marked）をCDNから読み込む', () => {
+  assert.match(build(), /cdn[^"']*marked/i)
+})
+
+test('タブ切り替えの構造がある', () => {
+  const html = build()
+  assert.match(html, /id="tab-dashboard"/)
+  assert.match(html, /id="tab-plan"/)
+  assert.match(html, /id="tab-menu"/)
 })
