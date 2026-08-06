@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>レシピ集 | 減量ダッシュボード</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Hiragino Sans", sans-serif; margin: 0; background: #f1f5f9; color: #0f172a; }
+  header { background: #1e293b; color: #fff; padding: 20px 24px; }
+  header h1 { margin: 0 0 4px; font-size: 20px; }
+  header .date { font-size: 12px; opacity: 0.7; }
+  main { max-width: 960px; margin: 0 auto; padding: 16px; }
+  .tabs { display: flex; gap: 8px; margin-top: 14px; }
+  .tab { display: inline-block; background: transparent; color: #cbd5e1; border: 1px solid #475569; border-radius: 999px; padding: 6px 16px; font-size: 13px; cursor: pointer; text-decoration: none; }
+  .tab.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+  .tab:hover { border-color: #93c5fd; }
+  section { background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgb(0 0 0 / 0.08); }
+
+  .md h1 { font-size: 20px; margin: 8px 0 12px; }
+  .md h2 { font-size: 17px; margin: 22px 0 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+  .md h3 { font-size: 15px; margin: 16px 0 6px; }
+  .md p, .md li { font-size: 14px; line-height: 1.7; }
+  .md ul, .md ol { padding-left: 22px; }
+  .md table { margin: 8px 0 16px; width: 100%; border-collapse: collapse; font-size: 13px; display: block; overflow-x: auto; }
+  .md th, .md td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e2e8f0; }
+  .md th { color: #64748b; font-weight: 600; }
+  .md code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  .md pre { background: #f1f5f9; padding: 12px; border-radius: 8px; overflow-x: auto; }
+  .md a { color: #2563eb; }
+  .md blockquote { border-left: 3px solid #cbd5e1; margin: 8px 0; padding: 2px 12px; color: #475569; }
+
+  @media (max-width: 640px) {
+    header { padding: 14px 16px; }
+    main { padding: 10px; }
+    .tabs { flex-wrap: wrap; }
+    .tab { flex: 1 1 40%; text-align: center; padding: 8px 4px; font-size: 12px; }
+    section { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>レシピ集</h1>
+  <div class="date">生成: 2026/8/6 18:02:41</div>
+  <nav class="tabs">
+    <a class="tab" href="dashboard.html">ダッシュボード</a>
+    <a class="tab" href="plan.html">計画書</a>
+    <a class="tab" href="menu.html">メニュー・買い物</a>
+    <a class="tab active" href="recipes.html">レシピ</a>
+  </nav>
+</header>
+<main>
+  <section><article id="content" class="md"></article></section>
+</main>
+
+<script>
+const MD = "# レシピ集\n\n[menu.md](menu.html) の各料理の作り方。分量はすべて1人分（特記なし）。\n調理時間はいずれも5–15分。味付けの油は1日小さじ1–2まで（plan.md 参照）。\n\n## 主菜\n\n### 鶏むねネギ塩レモン焼き\n\n材料: 鶏むね肉150g / 長ねぎ1/3本 / レモン汁 小さじ1 / 塩こしょう少々 / 油 小さじ1/2\n\n1. 鶏むねは5mm厚のそぎ切りにし、塩こしょうをもみ込む\n2. フライパンに油を熱し、中火で片面2–3分ずつ焼く\n3. 刻んだねぎ・レモン汁・塩ひとつまみを混ぜてかける\n\n### よだれ鶏\n\n材料: 鶏むね150g / 酒 大さじ1 / タレ（醤油・酢 各大さじ1、砂糖 小さじ1、ごま油・辣油 各小さじ1/2、すりごま 小さじ1、刻みねぎ）\n\n1. 耐熱皿に鶏むねと酒を入れ、ふんわりラップして600Wで2分。裏返して1分半、ラップしたまま5分置く\n2. タレの材料をすべて混ぜる\n3. 薄切りにした鶏にタレをかける\n\n### 鶏ハム\n\n材料（作り置き・週に1回）: 鶏むね1枚（約300g）/ 塩 小さじ1/2 / 砂糖 小さじ1/2 / こしょう少々\n\n1. 鶏むねに調味料をすり込み、保存袋の空気を抜いて一晩（最低1時間）冷蔵で寝かせる\n2. 袋ごと沸騰した湯に入れて火を止め、蓋をして20分放置\n3. 粗熱を取って薄切りに。冷蔵で3日保存可\n\n### 豆腐ステーキ\n\n材料: 木綿豆腐200g / 片栗粉 適量 / 油 小さじ1/2 / 醤油・みりん 各小さじ2\n\n1. 豆腐はキッチンペーパーに包み10分水切りする\n2. 片栗粉をまぶし、油を熱したフライパンで両面こんがり焼く\n3. 醤油・みりんを回し入れ、からめながら30秒煮る\n\n### サバ缶とキャベツの味噌煮\n\n材料: サバ水煮缶1/2缶 / キャベツ2枚 / 味噌 大さじ1 / みりん 大さじ1/2 / 水50ml\n\n1. 小鍋に水・味噌・みりんを溶かし、ざく切りのキャベツを中火で3分煮る\n2. サバを缶汁ごと加え、さらに2分煮る\n\n### ささみの梅しそ和え\n\n材料: ささみ150g / 梅干し1個 / 大葉3枚 / 酒 大さじ1\n\n1. ささみは筋を取り、酒をふりラップして600Wで1分半〜2分加熱\n2. 粗熱を取り、食べやすくほぐす\n3. 種を取って叩いた梅干しと千切りの大葉を和える\n\n### ささみの棒棒鶏\n\n材料: ささみ150g / ごまだれ（練りごま 大さじ1・醤油 小さじ2・酢 小さじ1・砂糖 小さじ1/2）/ 酒 大さじ1\n\n1. ささみは「梅しそ和え」と同じ手順でレンジ加熱してほぐす\n2. ごまだれの材料を混ぜ、ささみと和える\n\n### 鶏むね照り焼き\n\n材料: 鶏むね150g（下味冷凍分を前日冷蔵解凍）/ 醤油・みりん・酒 各大さじ1 / 砂糖 小さじ1\n\n1. 鶏むねを一口大に切り、フライパンで両面に焼き色をつける\n2. 調味料をすべて加え、とろみがつくまで中火で煮からめる\n\n### 納豆オムレツ\n\n材料: 卵2個 / 納豆1パック / 油 小さじ1/2 / （あれば千切りキャベツ）\n\n1. 納豆に溶き卵を混ぜる（付属のタレも入れてよい）\n2. 油を熱したフライパンに流し、両面を焼いて半分に折る\n\n### ちゃんこ風鍋\n\n材料: 鶏むね150g（一口大）/ キャベツ1–2枚・玉ねぎ1/4個・きのこ1/2パック・豆腐1/2丁 / 水300ml / 鶏がらスープの素 小さじ1 / 醤油 小さじ2\n\n1. 鍋に水とスープの素を沸かし、鶏むね・キャベツ・玉ねぎ・きのこを中火で7–8分煮る\n2. 豆腐を加えて2分煮て、醤油で味を調える\n\n### サバ缶の味噌煮\n\n材料: サバ水煮缶1/2缶 / 味噌 大さじ1 / みりん・酒 各小さじ2 / 生姜（チューブ可）少々 / 水50ml\n\n1. 小鍋に水・味噌・みりん・酒・生姜を溶かして煮立てる\n2. サバを缶汁ごと入れ、中火で3分煮る\n\n### 鮭の塩焼き\n\n材料: 生鮭1切れ / 塩 少々\n\n1. 鮭に軽く塩をふり5分置く\n2. 魚焼きグリル、またはフライパン（薄く油・蓋あり弱中火）で片面4–5分ずつ焼く\n\n### 鮭のホイル焼き\n\n材料: 生鮭1切れ / 玉ねぎ1/4個・きのこ1/2パック / 塩こしょう少々 / （あればバター5g または ポン酢）\n\n1. アルミホイルに鮭と野菜を乗せ、塩こしょうする\n2. 包んでフライパンに置き、水大さじ2を回りに入れて蓋をし、弱中火で10分蒸し焼きにする\n\n## 副菜\n\n### ほうれん草のおひたし\n\n材料: ほうれん草1袋 / 醤油 小さじ2 / （あれば鰹節）\n\n1. 沸騰した湯で1分茹で、冷水に取り水気を強めに絞る\n2. 4–5cmに切り、醤油をかける\n3. 作り置きする場合は小分けにして冷蔵2日（水曜夕食分までカバー）\n\n### ブロッコリーの塩ゆで\n\n材料: ブロッコリー適量 / 塩 少々\n\n1. 小房に分け、塩を入れた熱湯で2分茹でる。歯応えを残す\n\n### にんじんのきんぴら\n\n材料: にんじん1/2本 / 油 小さじ1/2 / 醤油・みりん 各小さじ1\n\n1. にんじんを千切りにし、油で中火2分炒める\n2. 醤油・みりんを絡めて1分炒める\n\n### 小松菜のおひたし\n\nほうれん草のおひたしと同じ手順。\n\n### 小松菜炒め\n\n材料: 小松菜1/2袋 / 油 小さじ1/2 / 塩こしょう・にんにく（チューブ可）少々\n\n1. ざく切りにし、油とにんにくで中火2分炒めて調味する\n\n### キャベツサラダ\n\n材料: キャベツ1–2枚 / 塩こしょう少々 / オリーブ油 小さじ1/2（または胡麻ドレッシング少々）\n\n1. 千切りにして水にさらし、よく水気を切って調味する\n\n### 残り野菜のコンソメスープ\n\n材料: 余った野菜・きのこ 適量 / 水200ml / コンソメ 小さじ1\n\n1. すべて鍋に入れて中火5分煮るだけ\n\n### 味噌汁\n\n材料: 水150ml / 味噌 大さじ1弱 / 豆腐（1/6丁程度）・乾燥わかめ 適量\n\n1. 水に豆腐・わかめを入れて煮る\n2. 火を止めてから味噌を溶く（煮立てると風味が落ちる）\n\n## 朝食パターンの作り方\n\n### オートミールの基本\n\n朝Aで使う戻し方。\n\n1. オートミール30gに水60mlを注ぎ、600Wで1分チンしてぬるま粥状にする\n2. 苦手な場合の対策: 水→牛乳にする / バナナときな粉（またははちみつ少量）を混ぜる / だしで煮て雑炊風にする（下記「オートミール雑炊」）\n\n### オートミール雑炊\n\n材料: オートミール40g / 卵1個 / 余り野菜 / 水150ml / 鶏がらスープの素 小さじ1/2\n\n1. 水とスープの素を沸かし、オートミールと刻んだ野菜を2–3分煮る\n2. 溶き卵を回し入れたら火を止める\n\n### ゆで卵\n\n1. 沸騰した湯に冷蔵庫からの卵をそっと入れ、10分茹でる\n2. 冷水で急冷する（殻がむきやすくなる）\n3. まとめ作りする場合は5個。殻をむいて冷蔵3日\n\n### 朝B（和定食）・朝C（軽めセット）\n\n- 朝B: ご飯を炊き、味噌汁（上記）・納豆・卵を並べるだけ\n- 朝C: ギリシャヨーグルト・バナナ・ゆで卵（作り置き）を盛るだけ\n\n## 作り置き・下味冷凍\n\n### 鶏むねの下味冷凍\n\n1. 購入日に150gずつ4等分に切り分ける\n2. 2つ（金・土用）に下味をもみ込む — 照り焼き用: 醤油・みりん各大さじ1/2 / 鍋用: 塩こしょうのみ\n3. 保存袋に平らに入れて冷凍。使う前日に冷蔵庫へ移して解凍\n\n### 週初のまとめ作り（30分）\n\n1. ゆで卵5個 → 朝食・間食用\n2. 鶏ハム1枚分 → 水曜昼用\n3. ほうれん草のおひたし → 月・火・水の夕食用\n";
+document.getElementById('content').innerHTML = marked.parse(MD);
+
+// 見出しにGitHub風のアンカーidを付与する（日本語は保持、空白はハイフン、記号は除去）。
+// menu.html からの recipes.html#料理名 のようなアンカーリンクを機能させるため。
+(function () {
+  const seen = new Set();
+  document.querySelectorAll('.md h1,.md h2,.md h3,.md h4,.md h5,.md h6').forEach(function (h) {
+    const base = h.textContent
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[!-/:-@[-\`{-~、。・（）［］「」『』：；？！　]/g, '');
+    let id = base;
+    let n = 1;
+    while (document.getElementById(id) || seen.has(id)) {
+      id = base + '-' + n;
+      n += 1;
+    }
+    seen.add(id);
+    h.id = id;
+  });
+})();
+</script>
+</body>
+</html>

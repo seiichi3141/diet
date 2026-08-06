@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>計画書 | 減量ダッシュボード</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Hiragino Sans", sans-serif; margin: 0; background: #f1f5f9; color: #0f172a; }
+  header { background: #1e293b; color: #fff; padding: 20px 24px; }
+  header h1 { margin: 0 0 4px; font-size: 20px; }
+  header .date { font-size: 12px; opacity: 0.7; }
+  main { max-width: 960px; margin: 0 auto; padding: 16px; }
+  .tabs { display: flex; gap: 8px; margin-top: 14px; }
+  .tab { display: inline-block; background: transparent; color: #cbd5e1; border: 1px solid #475569; border-radius: 999px; padding: 6px 16px; font-size: 13px; cursor: pointer; text-decoration: none; }
+  .tab.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+  .tab:hover { border-color: #93c5fd; }
+  section { background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgb(0 0 0 / 0.08); }
+
+  .md h1 { font-size: 20px; margin: 8px 0 12px; }
+  .md h2 { font-size: 17px; margin: 22px 0 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+  .md h3 { font-size: 15px; margin: 16px 0 6px; }
+  .md p, .md li { font-size: 14px; line-height: 1.7; }
+  .md ul, .md ol { padding-left: 22px; }
+  .md table { margin: 8px 0 16px; width: 100%; border-collapse: collapse; font-size: 13px; display: block; overflow-x: auto; }
+  .md th, .md td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e2e8f0; }
+  .md th { color: #64748b; font-weight: 600; }
+  .md code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  .md pre { background: #f1f5f9; padding: 12px; border-radius: 8px; overflow-x: auto; }
+  .md a { color: #2563eb; }
+  .md blockquote { border-left: 3px solid #cbd5e1; margin: 8px 0; padding: 2px 12px; color: #475569; }
+
+  @media (max-width: 640px) {
+    header { padding: 14px 16px; }
+    main { padding: 10px; }
+    .tabs { flex-wrap: wrap; }
+    .tab { flex: 1 1 40%; text-align: center; padding: 8px 4px; font-size: 12px; }
+    section { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>計画書</h1>
+  <div class="date">生成: 2026/8/6 18:02:41</div>
+  <nav class="tabs">
+    <a class="tab" href="dashboard.html">ダッシュボード</a>
+    <a class="tab active" href="plan.html">計画書</a>
+    <a class="tab" href="menu.html">メニュー・買い物</a>
+    <a class="tab" href="recipes.html">レシピ</a>
+  </nav>
+</header>
+<main>
+  <section><article id="content" class="md"></article></section>
+</main>
+
+<script>
+const MD = "# 減量・体力増強計画書\n\n作成日: 2026-08-06\n\n## 基本情報\n\n| 項目        | 値                       |\n| ----------- | ------------------------ |\n| 年齢 / 性別 | 46歳 / 男性              |\n| 身長        | 178cm                    |\n| 体重        | 77.4kg                   |\n| 体脂肪率    | 24.6%                    |\n| BMI         | 24.4（標準上限ギリギリ） |\n| 現在の運動  | 週1回 卓球90分           |\n\n参考: 脂肪量 約19.0kg / 除脂肪体重 約58.4kg\n\n## 目標\n\n- **体重 70kg 以下（-7.4kg）**\n- 期間: **2026-08-06 → 2026-11-06（3ヶ月・約13週）**\n- 計画ペース: **約0.6kg/週**\n- 筋肉を維持しながら脂肪を落とし、体脂肪率 20% 前後を目安にする\n- 筋力・体力の増強（自重トレ・有酸素の習慣化）\n\n## カロリー設計（数値根拠）\n\n| 項目              | 値                | 算出                                           |\n| ----------------- | ----------------- | ---------------------------------------------- |\n| 基礎代謝 BMR      | 約1,660 kcal      | Mifflin-St Jeor: 10×77.4 + 6.25×178 − 5×46 + 5 |\n| 消費カロリー TDEE | 約2,330 kcal      | BMR × 活動係数1.4（週1運動）                   |\n| **摂取目標**      | **1,700 kcal/日** | TDEE − 約630 kcal                              |\n\n- 赤字: 約630 kcal/日 → 週 約4,400 kcal ≒ 脂肪 0.57kg/週（脂肪1kg = 7,700 kcal 換算）\n- 13週 × 0.57kg ≒ **7.4kg 減** で目標達成の計算\n\n## PFC 目標（1日あたり）\n\n| 栄養素     | 目標         | kcal換算 |\n| ---------- | ------------ | -------- |\n| タンパク質 | **110–120g** | 約460    |\n| 脂質       | 約50g        | 約450    |\n| 炭水化物   | 約190g       | 約760    |\n\n- **プロテイン（定期購入済み）を1日1–2杯**（P 20–40g）飲む前提。食事側は P 80–90g を目安に確保\n- タンパク質を削らないことが筋肉維持の条件\n\n## 食事方針\n\n- 具体的な1週間メニューと買い物リストは **[menu.md](menu.html)** を参照（週1–2回の買い物で使い切る設計）\n- 間食・砂糖入り飲料は原則なし。アルコールは控えめ（週2回以内・1回1杯程度まで）\n- 夕食は就寝3時間前までに済ませる\n- 食べたものはその都度このチャットに報告 → カロリー・PFCを推定して記録する\n\n## 運動計画（自宅・屋外中心、ジム不要）\n\n| 種類                     | 頻度    | 内容                                                                                     |\n| ------------------------ | ------- | ---------------------------------------------------------------------------------------- |\n| 卓球                     | 週1回   | 90分（**火曜日**・現行継続）                                                             |\n| 自重トレ                 | 週2–3回 | スクワット / 腕立て / プランク / ランジ / 腹筋 各2–3セット（筋肉量維持が主目的）         |\n| 有酸素                   | 週2–3回 | 簡易エアロバイク 20–30分、または外でのランニング（最初は快走〜ゆっくりラン20分程度から） |\n| （オプション）体育館ジム | 週1–2回 | 必要な場合のみ。自重トレの置き換え・負荷向上用                                           |\n\n週間スケジュール（卓球は火曜固定）:\n\n| 曜日 | 内容                             |\n| ---- | -------------------------------- |\n| 月   | 自重トレ                         |\n| 火   | **卓球（90分）**                 |\n| 水   | 休み or 軽めのエアロバイク       |\n| 木   | 自重トレ                         |\n| 金   | ランニング or エアロバイク       |\n| 土   | 自重トレ or ランニング（調整日） |\n| 日   | 休み                             |\n\n### 自重トレの具体メニュー（週2–3回・1回20–30分）\n\n| #   | 種目       | 回数・時間 | セット | ポイント                                                     |\n| --- | ---------- | ---------- | ------ | ------------------------------------------------------------ |\n| 1   | スクワット | 10–15回    | 3      | 脚・お尻の大きな筋肉。膝はつま先と同じ方向、お尻を後ろに引く |\n| 2   | 腕立て伏せ | 8–12回     | 2–3    | 胸・腕。きつければ膝つきでOK                                 |\n| 3   | ランジ     | 左右各10回 | 2      | 脚・バランス。前足の膝が90度になるまで腰を落とす             |\n| 4   | プランク   | 30–60秒    | 2–3    | 体幹。頭からかかとまで一直線、腰を落とさない                 |\n| 5   | クランチ   | 15回       | 2      | 腹筋。腰を守るため肩甲骨が浮く程度まで起き上がる             |\n\n- セット間の休憩: 60–90秒\n- 開始前に軽いストレッチ5分（ウォームアップ）\n- 筋肉痛が残っていたら1日ずらす。無理に連続させない\n- **慣れてきたら**: 各種目の回数を+5ずつ増やす、または3秒かけてゆっくり下ろす（スロートレーニング化）で負荷を上げる\n- さらに余裕が出たら体育館ジム（オプション）でマシン・ダンベルに移行するのも有効\n\n### 有酸素の内容\n\n- **エアロバイク**: 20–30分。軽く息が弾むが会話はできる強度（心拍数の目安 120–130）\n- **ランニング**: いきなり走り続けず、「1分走る + 2分歩く」×5セット程度のウォーク＆ランから開始。膝・足首をいたわる\n- 2–3週間続けて余裕が出たら、走る時間を少しずつ延ばす\n\n## 計測・記録ルール\n\n- **毎朝、起床後・排泄後・食前**に体重・体脂肪率を計測し、このチャットで報告する\n- 食事・運動・睡眠はその都度チャットで報告 → Claude がデータに記録しダッシュボードを更新\n- 見える化: `dashboard.html`（体重推移・目標線・カロリー・運動履歴）\n\n## 見直しルール\n\n- **2週間以上体重が停滞** → 摂取カロリーを100–200kcal下げるか、有酸素を1回追加\n- **週1kgを超えるペースで減少** → 筋肉低下のリスク。摂取を1,800–1,900kcalに戻す\n- **強い疲労・体調不良** → ペースダウン。無理をしない\n\n## 注意事項\n\n3ヶ月で7.4kgはやや速いペース。タンパク質の確保と筋トレで筋肉の低下を防ぐことが成功の鍵。体調に異常を感じた場合は計画を中止し、医師に相談すること。\n";
+document.getElementById('content').innerHTML = marked.parse(MD);
+
+// 見出しにGitHub風のアンカーidを付与する（日本語は保持、空白はハイフン、記号は除去）。
+// menu.html からの recipes.html#料理名 のようなアンカーリンクを機能させるため。
+(function () {
+  const seen = new Set();
+  document.querySelectorAll('.md h1,.md h2,.md h3,.md h4,.md h5,.md h6').forEach(function (h) {
+    const base = h.textContent
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[!-/:-@[-\`{-~、。・（）［］「」『』：；？！　]/g, '');
+    let id = base;
+    let n = 1;
+    while (document.getElementById(id) || seen.has(id)) {
+      id = base + '-' + n;
+      n += 1;
+    }
+    seen.add(id);
+    h.id = id;
+  });
+})();
+</script>
+</body>
+</html>

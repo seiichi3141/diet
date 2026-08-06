@@ -14,6 +14,7 @@ import {
 } from './storage.ts'
 import { dailyCalories, latestWeight, progress, projectedGoalDate } from './metrics.ts'
 import { buildDashboardHtml } from './dashboard.ts'
+import { buildMarkdownPage } from './markdown-page.ts'
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)))
 const DATA_DIR = join(ROOT, 'data')
@@ -157,7 +158,18 @@ function build(): void {
     recipesMd: readTextIfExists(join(ROOT, 'recipes.md')),
   }
   writeFileSync(DASHBOARD_PATH, buildDashboardHtml(data))
-  console.log(`dashboard.html を更新しました（${DASHBOARD_PATH}）`)
+  const pages = [
+    { file: 'plan.html', title: '計画書', md: data.planMd, active: 'plan' as const },
+    { file: 'menu.html', title: 'メニュー・買い物リスト', md: data.menuMd, active: 'menu' as const },
+    { file: 'recipes.html', title: 'レシピ集', md: data.recipesMd, active: 'recipes' as const },
+  ]
+  for (const page of pages) {
+    writeFileSync(
+      join(ROOT, page.file),
+      buildMarkdownPage({ title: page.title, md: page.md, active: page.active, generatedAt: data.generatedAt }),
+    )
+  }
+  console.log(`ページを更新しました: dashboard.html / ${pages.map((p) => p.file).join(' / ')}`)
 }
 
 function readTextIfExists(path: string): string {
