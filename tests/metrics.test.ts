@@ -60,7 +60,7 @@ test('progress: 目標達成時は100を超えない', () => {
 test('projectedGoalDate: 直線トレンドから達成予測日を返す', () => {
   // 2026-08-06 から 1日 0.1kg ずつ減る完全な直線データ
   const records: WeightRecord[] = Array.from({ length: 7 }, (_, i) => ({
-    date: `2026-08-0${6 + i}`,
+    date: new Date(Date.UTC(2026, 7, 6 + i)).toISOString().slice(0, 10),
     weight: 77.4 - 0.1 * i,
   }))
   // 77.4 - 0.1*d = 70 → d = 74 → 2026-08-06 + 74日 = 2026-10-19
