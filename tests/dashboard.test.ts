@@ -42,6 +42,7 @@ function build(): string {
     generatedAt: '2026-08-07T09:00:00',
     planMd: '# テスト計画書\n\nこれは計画です',
     menuMd: '# テスト献立\n\nこれは献立です',
+    recipesMd: '# テストレシピ集\n\nこれはレシピです',
   })
 }
 
@@ -88,4 +89,9 @@ test('タブ切り替えの構造がある', () => {
   assert.match(html, /id="tab-dashboard"/)
   assert.match(html, /id="tab-plan"/)
   assert.match(html, /id="tab-menu"/)
+  assert.match(html, /id="tab-recipes"/)
+})
+
+test('レシピ集のMarkdownがHTMLに埋め込まれる', () => {
+  assert.ok(build().includes('テストレシピ集'), 'レシピ集が含まれる')
 })
