@@ -94,7 +94,9 @@ function logMeal(args: string[]): void {
     carbs: input.carbs,
   }
   appendJsonl(DATA_DIR, 'meals', record)
-  console.log(`記録しました: ${record.date} [${record.mealType}] ${record.description}（${record.calories}kcal / P${record.protein}g）`)
+  console.log(
+    `記録しました: ${record.date} [${record.mealType}] ${record.description}（${record.calories}kcal / P${record.protein}g）`,
+  )
 }
 
 function logExercise(args: string[]): void {
@@ -166,8 +168,12 @@ function summary(): void {
   const prog = progress(profile, latest.weight)
   const projection = projectedGoalDate(weights, profile.goalWeight)
 
-  console.log(`最新: ${latest.weight}kg${latest.bodyFat !== undefined ? `（体脂肪率 ${latest.bodyFat}%）` : ''} — ${latest.date}`)
-  console.log(`開始から: -${prog.lost}kg ／ 目標 ${profile.goalWeight}kg まで残り ${prog.remaining}kg（進捗 ${prog.percent}%）`)
+  console.log(
+    `最新: ${latest.weight}kg${latest.bodyFat !== undefined ? `（体脂肪率 ${latest.bodyFat}%）` : ''} — ${latest.date}`,
+  )
+  console.log(
+    `開始から: -${prog.lost}kg ／ 目標 ${profile.goalWeight}kg まで残り ${prog.remaining}kg（進捗 ${prog.percent}%）`,
+  )
   console.log(`達成予測: ${projection ?? '—（データ不足または減少トレンドなし）'} ／ 計画目標日: ${profile.goalDate}`)
 
   const todayStr = today()

@@ -21,7 +21,15 @@ const weights: WeightRecord[] = [
 ]
 
 const meals: MealRecord[] = [
-  { date: '2026-08-06', mealType: 'breakfast', description: 'おにぎり', calories: 550, protein: 12, fat: 4, carbs: 100 },
+  {
+    date: '2026-08-06',
+    mealType: 'breakfast',
+    description: 'おにぎり',
+    calories: 550,
+    protein: 12,
+    fat: 4,
+    carbs: 100,
+  },
 ]
 
 function build(): string {

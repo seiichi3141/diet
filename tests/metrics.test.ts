@@ -1,12 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import {
-  latestWeight,
-  weeklyAverages,
-  progress,
-  projectedGoalDate,
-  dailyCalories,
-} from '../src/metrics.ts'
+import { latestWeight, weeklyAverages, progress, projectedGoalDate, dailyCalories } from '../src/metrics.ts'
 import type { WeightRecord, MealRecord, Profile } from '../src/types.ts'
 
 const profile: Profile = {

@@ -44,7 +44,10 @@ test('appendJsonl: 既存内容を保持したまま追記する', () => {
     appendJsonl(dir, 'meals', { date: '2026-08-06', calories: 500 })
     appendJsonl(dir, 'meals', { date: '2026-08-06', calories: 300 })
     const records = readJsonl<{ calories: number }>(dir, 'meals')
-    assert.equal(records.reduce((sum, r) => sum + r.calories, 0), 800)
+    assert.equal(
+      records.reduce((sum, r) => sum + r.calories, 0),
+      800,
+    )
   })
 })
 

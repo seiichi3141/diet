@@ -55,6 +55,7 @@ node --experimental-strip-types --disable-warning=ExperimentalWarning src/cli.ts
 ## 開発ルール
 
 - 原則 TDD: 実装変更時は先にテスト（`tests/`）を書き、失敗を確認してから実装
-- テスト実行: `node --experimental-strip-types --disable-warning=ExperimentalWarning --test tests/*.test.ts`
-- 技術スタック: Node.js + TypeScript（`--experimental-strip-types`、依存パッケージなし）
+- 一括チェック: `npm run check`（typecheck + prettier + markdownlint + test）
+- 個別: `npm test` / `npm run typecheck` / `npm run format` / `npm run lint:md`（自動修正は `npm run fix:md`）
+- 技術スタック: Node.js + TypeScript（`--experimental-strip-types`、ランタイム依存なし。devDependencies: typescript / prettier / markdownlint-cli2）
 - データは `data/*.jsonl`（1行1レコードのJSON Lines）

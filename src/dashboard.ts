@@ -10,11 +10,7 @@ import {
 } from './metrics.ts'
 
 function esc(s: string): string {
-  return s
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
+  return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
 }
 
 /** data/ の全レコードから dashboard.html の内容を生成する。データはHTML内に埋め込み、file:// で開ける。 */
@@ -60,7 +56,10 @@ export function buildDashboardHtml(data: DashboardData): string {
   }).replaceAll('</', '<\\/')
 
   const exerciseRows = exercises
-    .map((e) => `<tr><td>${esc(e.date)}</td><td>${esc(e.type)}</td><td>${e.minutes}分</td><td>${esc(e.note ?? '')}</td></tr>`)
+    .map(
+      (e) =>
+        `<tr><td>${esc(e.date)}</td><td>${esc(e.type)}</td><td>${e.minutes}分</td><td>${esc(e.note ?? '')}</td></tr>`,
+    )
     .join('\n')
   const conditionRows = conditions
     .map(

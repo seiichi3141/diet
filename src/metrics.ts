@@ -48,10 +48,7 @@ export function weeklyAverages(records: WeightRecord[]): { weekStart: string; av
     }))
 }
 
-export function progress(
-  profile: Profile,
-  current: number,
-): { lost: number; remaining: number; percent: number } {
+export function progress(profile: Profile, current: number): { lost: number; remaining: number; percent: number } {
   const total = profile.startWeight - profile.goalWeight
   const lost = Math.max(0, profile.startWeight - current)
   const remaining = Math.max(0, current - profile.goalWeight)
