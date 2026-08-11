@@ -54,7 +54,7 @@
 <body>
 <header>
   <h1>減量ダッシュボード</h1>
-  <div class="date">生成: 2026/8/11 21:14:24 ／ 目標: 70kg（2026-11-06）</div>
+  <div class="date">生成: 2026/8/12 8:12:00 ／ 目標: 70kg（2026-11-06）</div>
   <nav class="tabs">
     <a class="tab active" href="dashboard.html">ダッシュボード</a>
     <a class="tab" href="plan.html">計画書</a>
@@ -64,15 +64,15 @@
 </header>
 <main>
   <div class="cards">
-    <div class="card"><div class="label">現在の体重</div><div class="value">76.8kg</div><div class="sub">2026-08-11 体脂肪 23.7%</div></div>
-    <div class="card"><div class="label">開始から</div><div class="value">-0.6kg</div><div class="sub">開始 77.4kg</div></div>
-    <div class="card"><div class="label">目標まで</div><div class="value">残り 6.8kg</div><div class="sub">目標 70kg</div></div>
-    <div class="card"><div class="label">達成予測</div><div class="value" style="font-size:16px">2026-10-07</div><div class="sub">直近トレンドより</div></div>
+    <div class="card"><div class="label">現在の体重</div><div class="value">77.8kg</div><div class="sub">2026-08-12 体脂肪 24.3%</div></div>
+    <div class="card"><div class="label">開始から</div><div class="value">-0kg</div><div class="sub">開始 77.4kg</div></div>
+    <div class="card"><div class="label">目標まで</div><div class="value">残り 7.8kg</div><div class="sub">目標 70kg</div></div>
+    <div class="card"><div class="label">達成予測</div><div class="value" style="font-size:16px">—</div><div class="sub">データ不足またはトレンドなし</div></div>
   </div>
 
   <div class="progress-wrap">
-    <div class="progress-bar"><div class="progress-fill" style="width: 8.1%"></div></div>
-    <div class="progress-text">進捗 8.1%（77.4kg → 76.8kg ／ 目標 70kg）</div>
+    <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+    <div class="progress-text">進捗 0%（77.4kg → 77.8kg ／ 目標 70kg）</div>
   </div>
 
   <section>
@@ -102,7 +102,7 @@
 </main>
 
 <script>
-const DATA = {"summary":{"current":76.8,"currentDate":"2026-08-11","currentBodyFat":23.7,"goal":70,"lost":0.6,"remaining":6.8,"percent":8.1,"projection":"2026-10-07","calorieTarget":1700,"proteinTarget":115},"weightChart":[{"date":"2026-08-06","weight":77.4,"bodyFat":24.6,"planned":77.4},{"date":"2026-08-07","weight":77.2,"bodyFat":23.9,"planned":77.3},{"date":"2026-08-08","weight":76.2,"bodyFat":23.6,"planned":77.2},{"date":"2026-08-09","weight":76.4,"bodyFat":23.5,"planned":77.2},{"date":"2026-08-10","weight":76.8,"bodyFat":24,"planned":77.1},{"date":"2026-08-11","weight":76.8,"bodyFat":23.7,"planned":77}],"daily":[{"date":"2026-08-06","calories":1230,"protein":127},{"date":"2026-08-07","calories":1690,"protein":107},{"date":"2026-08-08","calories":1745,"protein":112},{"date":"2026-08-09","calories":1640,"protein":109},{"date":"2026-08-10","calories":1715,"protein":124},{"date":"2026-08-11","calories":2025,"protein":129}],"weeks":[{"weekStart":"2026-08-03","avgWeight":76.8},{"weekStart":"2026-08-10","avgWeight":76.8}],"goalDate":"2026-11-06"};
+const DATA = {"summary":{"current":77.8,"currentDate":"2026-08-12","currentBodyFat":24.3,"goal":70,"lost":0,"remaining":7.8,"percent":0,"projection":null,"calorieTarget":1700,"proteinTarget":115},"weightChart":[{"date":"2026-08-06","weight":77.4,"bodyFat":24.6,"planned":77.4},{"date":"2026-08-07","weight":77.2,"bodyFat":23.9,"planned":77.3},{"date":"2026-08-08","weight":76.2,"bodyFat":23.6,"planned":77.2},{"date":"2026-08-09","weight":76.4,"bodyFat":23.5,"planned":77.2},{"date":"2026-08-10","weight":76.8,"bodyFat":24,"planned":77.1},{"date":"2026-08-11","weight":76.8,"bodyFat":23.7,"planned":77},{"date":"2026-08-12","weight":77.8,"bodyFat":24.3,"planned":76.9}],"daily":[{"date":"2026-08-06","calories":1230,"protein":127},{"date":"2026-08-07","calories":1690,"protein":107},{"date":"2026-08-08","calories":1745,"protein":112},{"date":"2026-08-09","calories":1640,"protein":109},{"date":"2026-08-10","calories":1715,"protein":124},{"date":"2026-08-11","calories":2025,"protein":129}],"weeks":[{"weekStart":"2026-08-03","avgWeight":76.8},{"weekStart":"2026-08-10","avgWeight":77.13}],"goalDate":"2026-11-06"};
 
 const weightCtx = document.getElementById('weight-chart');
 new Chart(weightCtx, {
