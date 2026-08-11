@@ -30,3 +30,5 @@
 {"date":"2026-08-11","mealType":"breakfast","description":"朝B: ご飯150g + 納豆 + 卵1個 + 味噌汁（豆腐・わかめ）（メニュー通り）","calories":440,"protein":20,"fat":12,"carbs":61}
 {"date":"2026-08-11","mealType":"lunch","description":"セブン: タンパク質が取れるチキン＆チリ + わかめごはんおにぎり + 1本満足バープロテインチョコ","calories":725,"protein":44,"fat":25,"carbs":83}
 {"date":"2026-08-11","mealType":"snack","description":"プロテイン（間食）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-08-11","mealType":"dinner","description":"鶏むね150gと野菜のちゃんこ風鍋（キャベツ・玉ねぎ・きのこ・豆腐1/2丁）+ ご飯200g（メニュー通り）","calories":630,"protein":45,"fat":8,"carbs":82}
+{"date":"2026-08-11","mealType":"snack","description":"レモンサワー（素 + コーラゼロ割り）ジョッキ1杯","calories":120,"protein":0,"fat":0,"carbs":3}
