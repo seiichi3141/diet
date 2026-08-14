@@ -44,3 +44,5 @@
 {"date":"2026-08-13","mealType":"snack","description":"集まりでの細々とした飲食（詳細不明・概算バッファ）","calories":300,"protein":10,"fat":12,"carbs":35}
 {"date":"2026-08-14","mealType":"breakfast","description":"朝C: ギリシャヨーグルト100g + バナナ1本 + ゆで卵2個（メニュー通り）","calories":300,"protein":23,"fat":11,"carbs":27}
 {"date":"2026-08-14","mealType":"lunch","description":"オートミール雑炊（オートミール40g + 卵1個 + 余り野菜）（メニュー通り）","calories":340,"protein":13,"fat":8,"carbs":28}
+{"date":"2026-08-14","mealType":"dinner","description":"香香飯店: 蒸し鶏の葱油少し・揚げレバー少し・餃子1個・牛バラ飯少し・五目炒飯少し・ネギチャーシュー半分","calories":715,"protein":42,"fat":34,"carbs":58}
+{"date":"2026-08-14","mealType":"snack","description":"ジンジャーハイボール大 + コーラハイボール大","calories":440,"protein":0,"fat":0,"carbs":40}
