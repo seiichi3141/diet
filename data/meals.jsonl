@@ -48,3 +48,5 @@
 {"date":"2026-08-14","mealType":"snack","description":"ジンジャーハイボール大 + コーラハイボール大","calories":440,"protein":0,"fat":0,"carbs":40}
 {"date":"2026-08-14","mealType":"snack","description":"プロテイン（就寝前）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-08-15","mealType":"breakfast","description":"朝B: ご飯150g + 納豆 + 卵1個 + 味噌汁（豆腐・わかめ）（メニュー通り）","calories":440,"protein":20,"fat":12,"carbs":61}
+{"date":"2026-08-15","mealType":"snack","description":"プロテイン（朝）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-08-15","mealType":"lunch","description":"納豆オムレツ（卵2個+納豆）+ キャベツサラダ（夜の祭りに備えご飯なし）","calories":270,"protein":17,"fat":18,"carbs":8}
