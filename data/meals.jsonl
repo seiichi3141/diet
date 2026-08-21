@@ -81,3 +81,5 @@
 {"date":"2026-08-20","mealType":"snack","description":"バナナ1本","calories":90,"protein":1,"fat":0,"carbs":23}
 {"date":"2026-08-20","mealType":"snack","description":"プロテイン（水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-08-21","mealType":"lunch","description":"オートミール雑炊（オートミール40g + 卵1個 + 余り野菜）（メニュー通り）","calories":340,"protein":13,"fat":8,"carbs":28}
+{"date":"2026-08-21","mealType":"breakfast","description":"朝C: ギリシャヨーグルト100g + バナナ1本 + ゆで卵2個（メニュー通り）","calories":300,"protein":23,"fat":11,"carbs":27}
+{"date":"2026-08-21","mealType":"snack","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
