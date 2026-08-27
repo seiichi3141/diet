@@ -60,27 +60,38 @@ export function progress(profile: Profile, current: number): { lost: number; rem
  * 全レコードの線形回帰トレンドから goalWeight に到達する予測日を返す。
  * 減少トレンドでない・データ不足の場合は null。
  */
+/** 週あたりの減少がこれ未満なら測定誤差とみなし、予測を出さない */
+const MIN_WEEKLY_LOSS_KG = 0.05
+/** 予測に必要な最小日数（直近7日 + その前7日） */
+const MIN_DAYS_FOR_PROJECTION = 14
+
+/**
+ * 目標体重への到達予測日を返す。データ不足・減少なしの場合は null。
+ *
+ * 日々の体重は水分・グリコーゲン・食事内容で ±0.5kg 程度振れるため、
+ * 全記録に線形回帰をかけると傾きがその変動に支配され、対象期間を変えるだけで
+ * 予測が大きく振れてしまう。そこで **直近7日の平均と、その前7日の平均の差**を
+ * 週あたりのペースとして使い、直近7日の平均を現在地とみなして外挿する。
+ */
 export function projectedGoalDate(records: WeightRecord[], goalWeight: number): string | null {
-  if (records.length < 2) return null
   const sorted = sortByDate(records)
-  const xs = sorted.map((r) => toEpochDay(r.date))
-  const ys = sorted.map((r) => r.weight)
-  const n = xs.length
-  const xMean = xs.reduce((s, x) => s + x, 0) / n
-  const yMean = ys.reduce((s, y) => s + y, 0) / n
-  let num = 0
-  let den = 0
-  for (let i = 0; i < n; i += 1) {
-    num += (xs[i] - xMean) * (ys[i] - yMean)
-    den += (xs[i] - xMean) ** 2
-  }
-  if (den === 0) return null
-  const slope = num / den
-  if (slope >= 0) return null
-  const intercept = yMean - slope * xMean
-  const targetDay = Math.round((goalWeight - intercept) / slope)
-  return toDateString(targetDay)
+  if (sorted.length < MIN_DAYS_FOR_PROJECTION) return null
+
+  const recent = sorted.slice(-7)
+  const previous = sorted.slice(-14, -7)
+  const mean = (rs: WeightRecord[]): number => rs.reduce((s, r) => s + r.weight, 0) / rs.length
+
+  const current = mean(recent)
+  const weeklyLoss = mean(previous) - current
+  if (weeklyLoss < MIN_WEEKLY_LOSS_KG) return null
+
+  const remaining = current - goalWeight
+  if (remaining <= 0) return null
+
+  const lastDay = toEpochDay(sorted[sorted.length - 1].date)
+  return toDateString(lastDay + Math.round((remaining / weeklyLoss) * 7))
 }
+
 
 /** 計画ペース線用: startDate/startWeight から goalDate/goalWeight への直線上の体重。 */
 export function plannedWeightAt(profile: Profile, date: string): number | null {

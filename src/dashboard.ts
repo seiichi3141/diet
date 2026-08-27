@@ -116,7 +116,7 @@ export function buildDashboardHtml(data: DashboardData): string {
     <div class="card"><div class="label">現在の体重</div><div class="value">${current}kg</div><div class="sub">${esc(summary.currentDate ?? '')}${summary.currentBodyFat !== null ? ` 体脂肪 ${summary.currentBodyFat}%` : ''}</div></div>
     <div class="card"><div class="label">開始から</div><div class="value">-${prog.lost}kg</div><div class="sub">開始 ${profile.startWeight}kg</div></div>
     <div class="card"><div class="label">目標まで</div><div class="value">残り ${prog.remaining}kg</div><div class="sub">目標 ${profile.goalWeight}kg</div></div>
-    <div class="card"><div class="label">達成予測</div><div class="value" style="font-size:16px">${projection ?? '—'}</div><div class="sub">${projection ? '直近トレンドより' : 'データ不足またはトレンドなし'}</div></div>
+    <div class="card"><div class="label">達成予測</div><div class="value" style="font-size:16px">${projection ?? '—'}</div><div class="sub">${projection ? '直近2週の週平均より' : '14日分のデータが揃うと表示'}</div></div>
   </div>
 
   <div class="progress-wrap">
