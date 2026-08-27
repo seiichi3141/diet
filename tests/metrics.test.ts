@@ -51,29 +51,52 @@ test('progress: 目標達成時は100を超えない', () => {
   assert.equal(p.remaining, 0)
 })
 
-test('projectedGoalDate: 直線トレンドから達成予測日を返す', () => {
-  // 2026-08-06 から 1日 0.1kg ずつ減る完全な直線データ
-  const records: WeightRecord[] = Array.from({ length: 7 }, (_, i) => ({
-    date: new Date(Date.UTC(2026, 7, 6 + i)).toISOString().slice(0, 10),
-    weight: 77.4 - 0.1 * i,
+// 達成予測は「直近7日の平均」と「その前7日の平均」の差から週あたりの減少ペースを求める。
+// 日々±0.5kg の変動に傾きが支配されるのを防ぐため、単純な線形回帰ではなく週平均どうしを比較する。
+
+/** 指定日から連続する日付の体重レコードを作る */
+function series(startDate: string, weights: number[]): WeightRecord[] {
+  const base = Date.parse(startDate + 'T00:00:00Z')
+  return weights.map((weight, i) => ({
+    date: new Date(base + i * 86400000).toISOString().slice(0, 10),
+    weight,
   }))
-  // 77.4 - 0.1*d = 70 → d = 74 → 2026-08-06 + 74日 = 2026-10-19
-  assert.equal(projectedGoalDate(records, 70), '2026-10-19')
+}
+
+test('projectedGoalDate: 直近7日と前7日の週平均差から達成予測日を返す', () => {
+  // 前半7日は 78.0kg、後半7日は 77.0kg → 週1.0kg減。直近平均 77.0 から 70 まで残り 7.0kg = 7週
+  const records = series('2026-08-14', [...Array(7).fill(78.0), ...Array(7).fill(77.0)])
+  // 最終日 2026-08-27 + 49日 = 2026-10-15
+  assert.equal(projectedGoalDate(records, 70), '2026-10-15')
 })
 
-test('projectedGoalDate: 減っていなければ null', () => {
-  const flat: WeightRecord[] = [
-    { date: '2026-08-06', weight: 77.4 },
-    { date: '2026-08-07', weight: 77.4 },
-  ]
-  assert.equal(projectedGoalDate(flat, 70), null)
-  const rising: WeightRecord[] = [
-    { date: '2026-08-06', weight: 77.0 },
-    { date: '2026-08-07', weight: 77.5 },
-  ]
-  assert.equal(projectedGoalDate(rising, 70), null)
+test('projectedGoalDate: 日々の変動があっても週平均で吸収される', () => {
+  // 週平均は上のテストと同じ（78.0 / 77.0）だが、日ごとに ±0.6kg 振れる
+  const noise = [0.6, -0.6, 0.3, -0.3, 0.6, -0.6, 0]
+  const records = series('2026-08-14', [...noise.map((d) => 78.0 + d), ...noise.map((d) => 77.0 + d)])
+  assert.equal(projectedGoalDate(records, 70), '2026-10-15')
+})
+
+test('projectedGoalDate: 14日分に満たなければ null（算出不能）', () => {
   assert.equal(projectedGoalDate([], 70), null)
-  assert.equal(projectedGoalDate([{ date: '2026-08-06', weight: 77.4 }], 70), null)
+  assert.equal(projectedGoalDate(series('2026-08-15', Array(13).fill(77.0)), 70), null)
+})
+
+test('projectedGoalDate: 減っていない・増えている場合は null', () => {
+  const flat = series('2026-08-14', Array(14).fill(77.0))
+  assert.equal(projectedGoalDate(flat, 70), null)
+  const rising = series('2026-08-14', [...Array(7).fill(77.0), ...Array(7).fill(77.5)])
+  assert.equal(projectedGoalDate(rising, 70), null)
+})
+
+test('projectedGoalDate: 減少が週0.05kg未満なら誤差とみなして null', () => {
+  const almostFlat = series('2026-08-14', [...Array(7).fill(77.0), ...Array(7).fill(76.98)])
+  assert.equal(projectedGoalDate(almostFlat, 70), null)
+})
+
+test('projectedGoalDate: 既に目標を下回っていれば null', () => {
+  const reached = series('2026-08-14', [...Array(7).fill(70.5), ...Array(7).fill(69.8)])
+  assert.equal(projectedGoalDate(reached, 70), null)
 })
 
 test('dailyCalories: 日付ごとに合算し日付昇順で返す', () => {
