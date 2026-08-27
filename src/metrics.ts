@@ -92,7 +92,6 @@ export function projectedGoalDate(records: WeightRecord[], goalWeight: number): 
   return toDateString(lastDay + Math.round((remaining / weeklyLoss) * 7))
 }
 
-
 /** 計画ペース線用: startDate/startWeight から goalDate/goalWeight への直線上の体重。 */
 export function plannedWeightAt(profile: Profile, date: string): number | null {
   const start = toEpochDay(profile.startDate)
