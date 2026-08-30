@@ -1,7 +1,16 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { latestWeight, weeklyAverages, progress, projectedGoalDate, dailyCalories } from '../src/metrics.ts'
-import type { WeightRecord, MealRecord, Profile } from '../src/types.ts'
+import {
+  latestWeight,
+  weeklyAverages,
+  progress,
+  projectedGoalDate,
+  dailyCalories,
+  weightMovingAverage,
+  bodyComposition,
+  exerciseWeeklyTotals,
+} from '../src/metrics.ts'
+import type { WeightRecord, MealRecord, ExerciseRecord, Profile } from '../src/types.ts'
 
 const profile: Profile = {
   age: 46,
@@ -108,5 +117,72 @@ test('dailyCalories: 日付ごとに合算し日付昇順で返す', () => {
   assert.deepEqual(dailyCalories(meals), [
     { date: '2026-08-05', calories: 600, protein: 30 },
     { date: '2026-08-06', calories: 800, protein: 35 },
+  ])
+})
+
+// --- 公開ダッシュボード向けの集計 ---
+
+test('weightMovingAverage: 7日移動平均を日付ごとに返す（窓が埋まるまでは null）', () => {
+  const records = series('2026-08-01', [78, 78, 78, 78, 78, 78, 78, 77, 77, 77])
+  const ma = weightMovingAverage(records, 7)
+  assert.equal(ma.length, 10)
+  // 最初の6日は窓が埋まらない
+  assert.deepEqual(
+    ma.slice(0, 6).map((p) => p.average),
+    [null, null, null, null, null, null],
+  )
+  assert.equal(ma[6].date, '2026-08-07')
+  assert.equal(ma[6].average, 78)
+  // 8日目は 78×6 + 77 = 545 / 7 = 77.86
+  assert.equal(ma[7].average, 77.86)
+  // 10日目は 78×4 + 77×3 = 543 / 7 = 77.57
+  assert.equal(ma[9].average, 77.57)
+})
+
+test('weightMovingAverage: 日付順に整列してから計算する', () => {
+  const shuffled: WeightRecord[] = [
+    { date: '2026-08-03', weight: 76 },
+    { date: '2026-08-01', weight: 78 },
+    { date: '2026-08-02', weight: 77 },
+  ]
+  const ma = weightMovingAverage(shuffled, 3)
+  assert.deepEqual(
+    ma.map((p) => p.date),
+    ['2026-08-01', '2026-08-02', '2026-08-03'],
+  )
+  assert.equal(ma[2].average, 77)
+})
+
+test('bodyComposition: 体脂肪率から脂肪量と除脂肪量を算出する', () => {
+  const records: WeightRecord[] = [
+    { date: '2026-08-06', weight: 77.4, bodyFat: 24.6 },
+    { date: '2026-08-30', weight: 75.2, bodyFat: 22.6 },
+  ]
+  const comp = bodyComposition(records)
+  assert.equal(comp.length, 2)
+  // 77.4 × 0.246 = 19.04 / 除脂肪 77.4 - 19.04 = 58.36
+  assert.deepEqual(comp[0], { date: '2026-08-06', fatMass: 19.04, leanMass: 58.36 })
+  // 75.2 × 0.226 = 16.9952 → 17.0 / 58.2
+  assert.deepEqual(comp[1], { date: '2026-08-30', fatMass: 17, leanMass: 58.2 })
+})
+
+test('bodyComposition: 体脂肪率のない記録は除外する', () => {
+  const records: WeightRecord[] = [
+    { date: '2026-08-06', weight: 77.4, bodyFat: 24.6 },
+    { date: '2026-08-07', weight: 77.2 },
+  ]
+  assert.equal(bodyComposition(records).length, 1)
+})
+
+test('exerciseWeeklyTotals: 週ごとの回数と分数を返す（日付昇順）', () => {
+  const exercises: ExerciseRecord[] = [
+    { date: '2026-08-06', type: '自重トレ', minutes: 25 },
+    { date: '2026-08-07', type: '卓球', minutes: 120 },
+    { date: '2026-08-13', type: '自重トレ', minutes: 30 },
+  ]
+  const totals = exerciseWeeklyTotals(exercises)
+  assert.deepEqual(totals, [
+    { weekStart: '2026-08-03', count: 2, minutes: 145 },
+    { weekStart: '2026-08-10', count: 1, minutes: 30 },
   ])
 })
