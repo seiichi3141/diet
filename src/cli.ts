@@ -159,9 +159,9 @@ function build(): void {
   }
   writeFileSync(DASHBOARD_PATH, buildDashboardHtml(data))
   const pages = [
-    { file: 'plan.html', title: '計画書', md: data.planMd, active: 'plan' as const },
-    { file: 'menu.html', title: 'メニュー・買い物リスト', md: data.menuMd, active: 'menu' as const },
-    { file: 'recipes.html', title: 'レシピ集', md: data.recipesMd, active: 'recipes' as const },
+    { file: 'plan.html', title: '計画', md: data.planMd, active: 'plan' as const },
+    { file: 'menu.html', title: '献立と買い物', md: data.menuMd, active: 'menu' as const },
+    { file: 'recipes.html', title: 'レシピ', md: data.recipesMd, active: 'recipes' as const },
   ]
   for (const page of pages) {
     writeFileSync(

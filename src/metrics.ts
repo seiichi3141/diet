@@ -1,4 +1,4 @@
-import type { MealRecord, Profile, WeightRecord } from './types.ts'
+import type { ExerciseRecord, MealRecord, Profile, WeightRecord } from './types.ts'
 
 const DAY_MS = 24 * 60 * 60 * 1000
 
@@ -18,6 +18,14 @@ function round2(x: number): number {
   return Math.round(x * 100) / 100
 }
 
+/** その日付が属する ISO週（月曜始まり）の開始日を返す */
+function weekStartOf(date: string): string {
+  const day = toEpochDay(date)
+  // getUTCDay: 日=0..土=6 → 月曜からのオフセットに変換
+  const dow = new Date(day * DAY_MS).getUTCDay()
+  return toDateString(day - ((dow + 6) % 7))
+}
+
 export function sortByDate<T extends { date: string }>(records: T[]): T[] {
   return [...records].sort((a, b) => a.date.localeCompare(b.date))
 }
@@ -32,10 +40,7 @@ export function latestWeight(records: WeightRecord[]): WeightRecord | null {
 export function weeklyAverages(records: WeightRecord[]): { weekStart: string; avgWeight: number }[] {
   const byWeek = new Map<string, number[]>()
   for (const r of records) {
-    const day = toEpochDay(r.date)
-    // getUTCDay: 日=0..土=6 → 月曜からのオフセットに変換
-    const dow = new Date(day * DAY_MS).getUTCDay()
-    const weekStart = toDateString(day - ((dow + 6) % 7))
+    const weekStart = weekStartOf(r.date)
     const list = byWeek.get(weekStart) ?? []
     list.push(r.weight)
     byWeek.set(weekStart, list)
@@ -113,4 +118,45 @@ export function dailyCalories(meals: MealRecord[]): { date: string; calories: nu
   return [...byDate.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([date, v]) => ({ date, calories: v.calories, protein: v.protein }))
+}
+
+/**
+ * 体重の移動平均を日付ごとに返す。日々±0.5kgの変動に隠れたトレンドを見せるため、
+ * グラフでは日次の点にこの線を重ねる。窓が埋まるまで（先頭 windowDays-1 件）は null。
+ */
+export function weightMovingAverage(
+  records: WeightRecord[],
+  windowDays = 7,
+): { date: string; average: number | null }[] {
+  const sorted = sortByDate(records)
+  return sorted.map((r, i) => {
+    if (i + 1 < windowDays) return { date: r.date, average: null }
+    const window = sorted.slice(i + 1 - windowDays, i + 1)
+    return { date: r.date, average: round2(window.reduce((s, x) => s + x.weight, 0) / window.length) }
+  })
+}
+
+/** 体重と体脂肪率から脂肪量・除脂肪量を算出する。体脂肪率のない記録は除外。 */
+export function bodyComposition(records: WeightRecord[]): { date: string; fatMass: number; leanMass: number }[] {
+  return sortByDate(records)
+    .filter((r) => r.bodyFat !== undefined)
+    .map((r) => {
+      const fatMass = round2((r.weight * (r.bodyFat as number)) / 100)
+      return { date: r.date, fatMass, leanMass: round2(r.weight - fatMass) }
+    })
+}
+
+/** 運動を週（ISO週・月曜始まり）ごとに集計する。 */
+export function exerciseWeeklyTotals(
+  exercises: ExerciseRecord[],
+): { weekStart: string; count: number; minutes: number }[] {
+  const byWeek = new Map<string, { count: number; minutes: number }>()
+  for (const e of exercises) {
+    const key = weekStartOf(e.date)
+    const cur = byWeek.get(key) ?? { count: 0, minutes: 0 }
+    cur.count += 1
+    cur.minutes += e.minutes
+    byWeek.set(key, cur)
+  }
+  return [...byWeek.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([weekStart, v]) => ({ weekStart, ...v }))
 }

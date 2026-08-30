@@ -67,7 +67,8 @@ test('グラフ用canvasと進捗表示がある', () => {
   const html = build()
   assert.match(html, /id="weight-chart"/)
   assert.match(html, /id="calorie-chart"/)
-  assert.match(html, /進捗|progress/i)
+  assert.match(html, /id="comp-chart"/)
+  assert.match(html, /進捗/)
 })
 
 test('file:// で開けるよう外部データ参照を持たない（fetch不使用）', () => {
@@ -79,8 +80,23 @@ test('他ページへのナビゲーションリンクがある（タブボタ�
   assert.ok(html.includes('href="plan.html"'))
   assert.ok(html.includes('href="menu.html"'))
   assert.ok(html.includes('href="recipes.html"'))
-  assert.match(html, /<a class="tab active" href="dashboard\.html">/)
-  assert.doesNotMatch(html, /<button class="tab"/)
+  assert.match(html, /<a class="nav-link is-active" href="dashboard\.html">/)
+  assert.doesNotMatch(html, /<button/)
+})
+
+test('体組成のグラフと7日移動平均を持つ', () => {
+  const html = build()
+  assert.match(html, /id="comp-chart"/)
+  assert.match(html, /7日移動平均/)
+  assert.ok(html.includes('"average"'), '移動平均のデータが埋め込まれる')
+  assert.ok(html.includes('"fatMass"'), '脂肪量のデータが埋め込まれる')
+  assert.ok(html.includes('"leanMass"'), '除脂肪量のデータが埋め込まれる')
+})
+
+test('初見の読者向けにリード文と注記がある', () => {
+  const html = build()
+  assert.match(html, /name="description"/)
+  assert.match(html, /推定値/, '数値が推定であることを明示する')
 })
 
 test('Markdown本文はダッシュボードに埋め込まない（各ページに分離）', () => {

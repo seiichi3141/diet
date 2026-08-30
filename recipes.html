@@ -3,58 +3,150 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>レシピ集 | 減量ダッシュボード</title>
+<title>レシピ | 減量・体力増強の記録</title>
+<meta name="description" content="献立に出てくる料理の作り方。すべて1人分、調理時間は5〜15分を目安にしています。">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
-  :root { color-scheme: light; }
+  :root {
+    color-scheme: light;
+    --ink: #16181d;
+    --ink-soft: #5b6270;
+    --ink-faint: #9aa1af;
+    --rule: #e6e8ec;
+    --bg: #ffffff;
+    --bg-soft: #f7f8fa;
+    --accent: #c2410c;
+    --accent-soft: #fdf1e9;
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --num: "SF Mono", "Roboto Mono", Menlo, monospace;
+  }
   * { box-sizing: border-box; }
-  body { font-family: -apple-system, "Hiragino Sans", sans-serif; margin: 0; background: #f1f5f9; color: #0f172a; }
-  header { background: #1e293b; color: #fff; padding: 20px 24px; }
-  header h1 { margin: 0 0 4px; font-size: 20px; }
-  header .date { font-size: 12px; opacity: 0.7; }
-  main { max-width: 960px; margin: 0 auto; padding: 16px; }
-  .tabs { display: flex; gap: 8px; margin-top: 14px; }
-  .tab { display: inline-block; background: transparent; color: #cbd5e1; border: 1px solid #475569; border-radius: 999px; padding: 6px 16px; font-size: 13px; cursor: pointer; text-decoration: none; }
-  .tab.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
-  .tab:hover { border-color: #93c5fd; }
-  section { background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 3px rgb(0 0 0 / 0.08); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
-  .md h1 { font-size: 20px; margin: 8px 0 12px; }
-  .md h2 { font-size: 17px; margin: 22px 0 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
-  .md h3 { font-size: 15px; margin: 16px 0 6px; }
-  .md p, .md li { font-size: 14px; line-height: 1.7; }
-  .md ul, .md ol { padding-left: 22px; }
-  .md table { margin: 8px 0 16px; width: 100%; border-collapse: collapse; font-size: 13px; display: block; overflow-x: auto; }
-  .md th, .md td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e2e8f0; }
-  .md th { color: #64748b; font-weight: 600; }
-  .md code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
-  .md pre { background: #f1f5f9; padding: 12px; border-radius: 8px; overflow-x: auto; }
-  .md a { color: #2563eb; }
-  .md blockquote { border-left: 3px solid #cbd5e1; margin: 8px 0; padding: 2px 12px; color: #475569; }
+  /* ヘッダー: サイト名とナビだけ。中身は本文が主役 */
+  .site-head { border-bottom: 1px solid var(--rule); }
+  .site-head .wrap {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; padding-top: 20px; padding-bottom: 20px;
+  }
+  .site-title {
+    font-family: var(--serif); font-size: 17px; font-weight: 600;
+    letter-spacing: 0.02em; margin: 0;
+  }
+  .site-title a { color: inherit; text-decoration: none; }
+  .nav { display: flex; gap: 20px; }
+  .nav-link {
+    font-size: 14px; color: var(--ink-soft); text-decoration: none;
+    padding-bottom: 2px; border-bottom: 1.5px solid transparent;
+  }
+  .nav-link:hover { color: var(--ink); }
+  .nav-link.is-active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+  .site-foot {
+    border-top: 1px solid var(--rule); margin-top: 64px;
+    padding: 24px 0 48px; font-size: 12px; color: var(--ink-faint);
+  }
+  .site-foot .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .site-foot a { color: var(--ink-faint); }
+
+  .lead { padding: 56px 0 8px; }
+  .lead h1 {
+    font-family: var(--serif); font-size: 30px; line-height: 1.5;
+    margin: 0 0 10px; letter-spacing: 0.01em; font-weight: 600;
+  }
+  .lead .dek { font-size: 15px; color: var(--ink-soft); margin: 0; }
+
+  .md { padding-bottom: 8px; }
+  .md > h1:first-child { display: none; }
+  .md h2 {
+    font-family: var(--serif); font-size: 21px; font-weight: 600;
+    margin: 52px 0 14px; padding-top: 18px; border-top: 2px solid var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .md h3 { font-size: 16px; font-weight: 600; margin: 32px 0 8px; }
+  .md h4 { font-size: 14px; font-weight: 600; margin: 24px 0 6px; color: var(--ink-soft); }
+  .md p { font-size: 15px; margin: 0 0 16px; }
+  .md ul, .md ol { padding-left: 20px; margin: 0 0 16px; }
+  .md li { font-size: 15px; margin-bottom: 6px; }
+  .md li::marker { color: var(--ink-faint); }
+  .md strong { font-weight: 600; }
+  .md a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,65,12,0.3); }
+  .md a:hover { border-bottom-color: var(--accent); }
+
+  .md table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 0 0 22px; }
+  .md thead th {
+    text-align: left; font-size: 11px; letter-spacing: 0.06em; font-weight: 600;
+    color: var(--ink-faint); padding: 0 12px 8px 0; border-bottom: 1px solid var(--ink);
+    white-space: nowrap;
+  }
+  .md tbody td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+
+  .md code {
+    background: var(--bg-soft); padding: 2px 6px; border-radius: 3px;
+    font-family: var(--num); font-size: 12.5px;
+  }
+  .md pre {
+    background: var(--bg-soft); padding: 14px 16px; border-radius: 4px;
+    overflow-x: auto; border: 1px solid var(--rule);
+  }
+  .md pre code { background: none; padding: 0; font-size: 12.5px; line-height: 1.7; }
+  .md blockquote {
+    border-left: 2px solid var(--accent); background: var(--accent-soft);
+    margin: 0 0 18px; padding: 12px 16px; border-radius: 0 4px 4px 0;
+  }
+  .md blockquote p:last-child { margin-bottom: 0; }
+  .md hr { border: 0; border-top: 1px solid var(--rule); margin: 36px 0; }
 
   @media (max-width: 640px) {
-    header { padding: 14px 16px; }
-    main { padding: 10px; }
-    .tabs { flex-wrap: wrap; }
-    .tab { flex: 1 1 40%; text-align: center; padding: 8px 4px; font-size: 12px; }
-    section { padding: 12px; }
+    .wrap { padding: 0 18px; }
+    .site-head .wrap { padding-top: 14px; padding-bottom: 14px; }
+    .nav { gap: 14px; }
+    .nav-link { font-size: 13px; }
+  }
+
+  @media (max-width: 640px) {
+    .lead { padding: 32px 0 4px; }
+    .lead h1 { font-size: 23px; }
+    .md h2 { font-size: 18px; margin-top: 40px; }
+    .md p, .md li { font-size: 14.5px; }
+    .md .table-scroll { overflow-x: auto; }
   }
 </style>
 </head>
 <body>
-<header>
-  <h1>レシピ集</h1>
-  <div class="date">生成: 2026/8/30 23:28:29</div>
-  <nav class="tabs">
-    <a class="tab" href="dashboard.html">ダッシュボード</a>
-    <a class="tab" href="plan.html">計画書</a>
-    <a class="tab" href="menu.html">メニュー・買い物</a>
-    <a class="tab active" href="recipes.html">レシピ</a>
+<header class="site-head">
+  <div class="wrap">
+    <p class="site-title"><a href="dashboard.html">減量・体力増強の記録</a></p>
+    <nav class="nav">
+    <a class="nav-link" href="dashboard.html">記録</a>
+    <a class="nav-link" href="plan.html">計画</a>
+    <a class="nav-link" href="menu.html">献立</a>
+    <a class="nav-link is-active" href="recipes.html">レシピ</a>
   </nav>
+  </div>
 </header>
-<main>
-  <section><article id="content" class="md"></article></section>
+<main class="wrap">
+  <div class="lead">
+    <h1>レシピ</h1>
+    <p class="dek">献立に出てくる料理の作り方。すべて1人分、調理時間は5〜15分を目安にしています。</p>
+  </div>
+  <article id="content" class="md"></article>
 </main>
+<footer class="site-foot">
+  <div class="wrap">
+    <span>最終更新 2026/8/31 3:19:18</span>
+    <span>数値は自己申告・自宅の体組成計にもとづく推定値です</span>
+  </div>
+</footer>
 
 <script>
 const MD = "# レシピ集\n\n[menu.md](menu.html) の各料理の作り方。分量はすべて1人分（特記なし）。\n調理時間はいずれも5–15分。味付けの油は1日小さじ1–2まで（plan.md 参照）。\n\n## 主菜\n\n### 鶏むねネギ塩レモン焼き\n\n材料: 鶏むね肉150g / 長ねぎ1/3本 / レモン汁 小さじ1 / 塩こしょう少々 / 油 小さじ1/2\n\n1. 鶏むねは5mm厚のそぎ切りにし、塩こしょうをもみ込む\n2. フライパンに油を熱し、中火で片面2–3分ずつ焼く\n3. 刻んだねぎ・レモン汁・塩ひとつまみを混ぜてかける\n\n### よだれ鶏\n\n材料: 鶏むね150g / 酒 大さじ1 / タレ（醤油・酢 各大さじ1、砂糖 小さじ1、ごま油・辣油 各小さじ1/2、すりごま 小さじ1、刻みねぎ）\n\n1. 耐熱皿に鶏むねと酒を入れ、ふんわりラップして600Wで2分。裏返して1分半、ラップしたまま5分置く\n2. タレの材料をすべて混ぜる\n3. 薄切りにした鶏にタレをかける\n\n### 鶏ハム\n\n材料（作り置き・週に1回）: 鶏むね1枚（約300g）/ 塩 小さじ1/2 / 砂糖 小さじ1/2 / こしょう少々\n\n1. 鶏むねに調味料をすり込み、保存袋の空気を抜いて一晩（最低1時間）冷蔵で寝かせる\n2. 袋ごと沸騰した湯に入れて火を止め、蓋をして20分放置\n3. 粗熱を取って薄切りに。冷蔵で3日保存可\n\n### 豆腐ステーキ\n\n材料: 木綿豆腐200g / 片栗粉 適量 / 油 小さじ1/2 / 醤油・みりん 各小さじ2\n\n1. 豆腐はキッチンペーパーに包み10分水切りする\n2. 片栗粉をまぶし、油を熱したフライパンで両面こんがり焼く\n3. 醤油・みりんを回し入れ、からめながら30秒煮る\n\n### サバ缶とキャベツの味噌煮\n\n材料: サバ水煮缶1/2缶 / キャベツ2枚 / 味噌 大さじ1 / みりん 大さじ1/2 / 水50ml\n\n1. 小鍋に水・味噌・みりんを溶かし、ざく切りのキャベツを中火で3分煮る\n2. サバを缶汁ごと加え、さらに2分煮る\n\n### ささみの梅しそ和え\n\n材料: ささみ150g / 梅干し1個 / 大葉3枚 / 酒 大さじ1\n\n1. ささみは筋を取り、酒をふりラップして600Wで1分半〜2分加熱\n2. 粗熱を取り、食べやすくほぐす\n3. 種を取って叩いた梅干しと千切りの大葉を和える\n\n### ささみの棒棒鶏\n\n材料: ささみ150g / ごまだれ（練りごま 大さじ1・醤油 小さじ2・酢 小さじ1・砂糖 小さじ1/2）/ 酒 大さじ1\n\n1. ささみは「梅しそ和え」と同じ手順でレンジ加熱してほぐす\n2. ごまだれの材料を混ぜ、ささみと和える\n\n### ささみと残り野菜の中華風炒め\n\n余った野菜をまとめて片づけられる一品。買い物前日の冷蔵庫整理に使える。ささみは片栗粉をまぶすとパサつかない。\n\n材料（1人分）: ささみ150g（3本程度）/ 残り野菜 合わせて150–200g（キャベツ・玉ねぎ・にんじん・きのこ・小松菜など何でも）/ 酒 小さじ1 / 塩こしょう 少々 / 片栗粉 小さじ2 / サラダ油 小さじ1 / 鶏がらスープの素 小さじ1/2 / 醤油 小さじ1 / 生姜チューブ 2cm（あれば）\n\n1. ささみは筋を取り、**そぎ切り**（包丁を斜めに寝かせて薄く）にする。酒と塩こしょうをふって軽くもみ、**片栗粉を薄くまぶす**\n2. 野菜は食べやすい大きさに切る。にんじん・玉ねぎなど火の通りにくいものと、葉物を分けておく\n3. フライパンに油を熱し、ささみを重ならないように並べて中火で焼く。両面に焼き色がついたら一度取り出す\n4. 同じフライパンで硬い野菜から炒め、しんなりしたら葉物とささみを戻す\n5. 鶏がらスープの素・醤油・生姜を加えて全体にからめ、こしょうで味を整える\n\n約245kcal / P37g（ささみ150g・野菜150g・油小さじ1の場合）\n\n- 片栗粉が肉汁を閉じ込めるので、ささみでもしっとり仕上がる\n- **味付けは最後にまとめて**。先に入れると野菜から水分が出て水っぽくなる\n- 葉物は最後の30秒で加えると食感が残る\n\n### 鶏むね照り焼き\n\n材料: 鶏むね150g（下味冷凍分を前日冷蔵解凍）/ 醤油・みりん・酒 各大さじ1 / 砂糖 小さじ1\n\n1. 鶏むねを一口大に切り、フライパンで両面に焼き色をつける\n2. 調味料をすべて加え、とろみがつくまで中火で煮からめる\n\n### 納豆オムレツ\n\n材料: 卵2個 / 納豆1パック / 油 小さじ1/2 / （あれば千切りキャベツ）\n\n1. 納豆に溶き卵を混ぜる（付属のタレも入れてよい）\n2. 油を熱したフライパンに流し、両面を焼いて半分に折る\n\n### ちゃんこ風鍋\n\n材料: 鶏むね150g（一口大）/ キャベツ1–2枚・玉ねぎ1/4個・きのこ1/2パック・豆腐1/2丁 / 水300ml / 鶏がらスープの素 小さじ1 / 醤油 小さじ2\n\n1. 鍋に水とスープの素を沸かし、鶏むね・キャベツ・玉ねぎ・きのこを中火で7–8分煮る\n2. 豆腐を加えて2分煮て、醤油で味を調える\n\n### サバ缶の味噌煮\n\n材料: サバ水煮缶1/2缶 / 味噌 大さじ1 / みりん・酒 各小さじ2 / 生姜（チューブ可）少々 / 水50ml\n\n1. 小鍋に水・味噌・みりん・酒・生姜を溶かして煮立てる\n2. サバを缶汁ごと入れ、中火で3分煮る\n\n### 鮭の塩焼き\n\n材料: 生鮭1切れ / 塩 少々\n\n1. 鮭に軽く塩をふり5分置く\n2. 魚焼きグリル、またはフライパン（薄く油・蓋あり弱中火）で片面4–5分ずつ焼く\n\n### 鮭のホイル焼き\n\n材料: 生鮭1切れ / 玉ねぎ1/4個・きのこ1/2パック / 塩こしょう少々 / （あればバター5g または ポン酢）\n\n1. アルミホイルに鮭と野菜を乗せ、塩こしょうする\n2. 包んでフライパンに置き、水大さじ2を回りに入れて蓋をし、弱中火で10分蒸し焼きにする\n\n## 副菜\n\n### ほうれん草のおひたし\n\n材料: ほうれん草1袋 / 醤油 小さじ2 / （あれば鰹節）\n\n1. 沸騰した湯で1分茹で、冷水に取り水気を強めに絞る\n2. 4–5cmに切り、醤油をかける\n3. 作り置きする場合は小分けにして冷蔵2日（水曜夕食分までカバー）\n\n### ブロッコリーの塩ゆで\n\n材料: ブロッコリー適量 / 塩 少々\n\n1. 小房に分け、塩を入れた熱湯で2分茹でる。歯応えを残す\n\n### にんじんのきんぴら\n\n材料: にんじん1/2本 / 油 小さじ1/2 / 醤油・みりん 各小さじ1\n\n1. にんじんを千切りにし、油で中火2分炒める\n2. 醤油・みりんを絡めて1分炒める\n\n### 小松菜のおひたし\n\nほうれん草のおひたしと同じ手順。\n\n### 小松菜炒め\n\n材料: 小松菜1/2袋 / 油 小さじ1/2 / 塩こしょう・にんにく（チューブ可）少々\n\n1. ざく切りにし、油とにんにくで中火2分炒めて調味する\n\n### キャベツサラダ\n\n材料: キャベツ1–2枚 / 塩こしょう少々 / オリーブ油 小さじ1/2（または胡麻ドレッシング少々）\n\n1. 千切りにして水にさらし、よく水気を切って調味する\n\n### きのこのおひたし風\n\nほうれん草・小松菜が手に入らないときの、おひたしの代替。作り置き可（冷蔵3日）。\n\n材料: しめじ・えのきなど 1/2パック / めんつゆ（3倍濃縮）小さじ2 / 水 大さじ1 / 鰹節 少々\n\n1. きのこを小房に分け、耐熱容器に入れてラップをし600Wで2分加熱する\n2. 出た水分を軽く切り、めんつゆと水を混ぜて和える\n3. 冷めたら鰹節をふる\n\n約25kcal / P2g\n\n### キャベツのごま和え\n\nこちらもおひたしの代替。キャベツが余っているときに。\n\n材料: キャベツ2枚（100g程度）/ すりごま 小さじ2 / 醤油 小さじ1 / 砂糖 ひとつまみ / ごま油 数滴\n\n1. キャベツをざく切りにし、耐熱容器で600W 2分加熱（または熱湯で1分ゆでる）\n2. 水気をしっかり絞り、調味料と和える\n\n約60kcal / P2g\n\n### 残り野菜のコンソメスープ\n\n材料: 余った野菜・きのこ 適量 / 水200ml / コンソメ 小さじ1\n\n1. すべて鍋に入れて中火5分煮るだけ\n\n### 味噌汁\n\n材料: 水150ml / 味噌 大さじ1弱 / 豆腐（1/6丁程度）・乾燥わかめ 適量\n\n1. 水に豆腐・わかめを入れて煮る\n2. 火を止めてから味噌を溶く（煮立てると風味が落ちる）\n\n## 朝食パターンの作り方\n\n### オートミールの基本\n\n朝Aで使う戻し方。\n\n1. オートミール30gに水60mlを注ぎ、600Wで1分チンしてぬるま粥状にする\n2. 苦手な場合の対策: 水→牛乳にする / バナナときな粉（またははちみつ少量）を混ぜる / だしで煮て雑炊風にする（下記「オートミール雑炊」）\n\n### オートミール雑炊\n\n材料: オートミール40g / 卵1個 / 余り野菜 / 水150ml / 鶏がらスープの素 小さじ1/2\n\n1. 水とスープの素を沸かし、オートミールと刻んだ野菜を2–3分煮る\n2. 溶き卵を回し入れたら火を止める\n\n### ギリシャヨーグルトの食べ方\n\n**2026-08-26 以降はオイコス（フレーバー付き110g・92kcal / P10g / 脂肪0）を使用**。朝A・朝Cで1個ずつ。味がついているので、下記のトッピングは不要（無糖タイプを使う場合の参考として残す）。\n\n1. **バナナ＋きな粉**（定番）: バナナ1/2本を切ってのせ、きな粉 小さじ1をふる（+約55kcal）\n2. **はちみつ**: 小さじ1をかけるだけ（+約20kcal）。甘さはこれくらいに抑える\n3. **ごまはちみつ**: すりごま 小さじ1 + はちみつ 小さじ1（+約50kcal）。香ばしくて満足感あり\n4. **そのまま**: 無糖のまま。慣れるとこれが一番手軽\n\n※ きな粉・はちみつは任意ストック（なければ「そのまま」かバナナのみでOK）\n\n### ゆで卵（簡単な作り方）\n\n水から茹でる方法が失敗しにくくて簡単。\n\n1. 鍋に卵と、卵がかぶるくらいの**水**を入れて強火にかける（水からなら殻が割れにくい）\n2. 沸騰したら弱〜中火に落とす — **半熟: 6分 / 固茹で: 9〜10分**\n3. 茹で上がったらすぐ冷水にとる（黄身の黒ずみ防止＆殻がむきやすくなる）\n4. 殻は冷えてから、流水をあてながらむくとツルッとむける\n\n- まとめ作り: 土曜に5個。**殻つきのまま冷蔵で3日以内**に食べる\n- 白身が漏れたとき用: 湯に塩ひとつまみ（または酢少々）を入れておくと漏れてもすぐ固まる\n\n### 朝B（和定食）・朝C（軽めセット）\n\n- 朝B: ご飯を炊き、味噌汁（上記）・納豆・卵を並べるだけ\n- 朝C: ギリシャヨーグルト（上記「ギリシャヨーグルトの食べ方」）・バナナ・ゆで卵（作り置き）を盛るだけ\n\n## 作り置き・下味冷凍\n\n### 鶏むねの下味冷凍\n\n1. 購入日に150gずつ4等分に切り分ける\n2. 2つ（金・土用）に下味をもみ込む — 照り焼き用: 醤油・みりん各大さじ1/2 / 鍋用: 塩こしょうのみ\n3. 保存袋に平らに入れて冷凍。使う前日に冷蔵庫へ移して解凍\n\n### 週初のまとめ作り（30分）\n\n1. ゆで卵5個 → 朝食・間食用\n2. 鶏ハム1枚分 → 水曜昼用\n3. ほうれん草のおひたし → 月・火・水の夕食用\n";
@@ -80,6 +172,14 @@ document.getElementById('content').innerHTML = marked.parse(MD);
     h.id = id;
   });
 })();
+
+// 横に長い表はスマホで独立してスクロールさせる
+document.querySelectorAll('.md table').forEach(function (t) {
+  const box = document.createElement('div');
+  box.className = 'table-scroll';
+  t.parentNode.insertBefore(box, t);
+  box.appendChild(t);
+});
 </script>
 </body>
 </html>

@@ -49,7 +49,7 @@ test('他ページへのナビゲーションリンクがあり、現在ペー�
   assert.ok(html.includes('href="dashboard.html"'))
   assert.ok(html.includes('href="plan.html"'))
   assert.ok(html.includes('href="menu.html"'))
-  assert.match(html, /<a class="tab active" href="recipes\.html">/)
+  assert.match(html, /<a class="nav-link is-active" href="recipes\.html">/)
 })
 
 test('スマホ表示に対応している（viewportとモバイル用メディアクエリ）', () => {
