@@ -155,3 +155,5 @@
 {"date":"2026-09-03","mealType":"snack","description":"プロテイン（水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-09-04","mealType":"breakfast","description":"朝C: オイコス1個 + バナナ1本 + ゆで卵2個（メニュー通り）","calories":332,"protein":23,"fat":11,"carbs":37}
 {"date":"2026-09-04","mealType":"snack","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-09-04","mealType":"lunch","description":"オートミール雑炊（オートミール40g + 卵1個 + 余り野菜）（メニュー通り）","calories":340,"protein":13,"fat":8,"carbs":28}
+{"date":"2026-09-04","mealType":"dinner","description":"サバ缶の味噌煮（缶1/2）+ 残り野菜のコンソメスープ + ご飯100g（メニュー通り）","calories":542,"protein":29,"fat":22,"carbs":55}
