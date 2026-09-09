@@ -49,7 +49,7 @@ test('他ページへのナビゲーションリンクがあり、現在ペー�
   assert.ok(html.includes('href="dashboard.html"'))
   assert.ok(html.includes('href="plan.html"'))
   assert.ok(html.includes('href="menu.html"'))
-  assert.match(html, /<a class="nav-link is-active" href="recipes\.html">/)
+  assert.match(html, /<a class="nav-link is-active" href="recipes\.html" aria-current="page">/)
 })
 
 test('スマホ表示に対応している（viewportとモバイル用メディアクエリ）', () => {
@@ -60,4 +60,13 @@ test('スマホ表示に対応している（viewportとモバイル用メディ
 
 test('file:// で開けるよう外部データ参照を持たない（fetch不使用）', () => {
   assert.doesNotMatch(buildPage(), /fetch\s*\(/)
+})
+
+test('目次検索と本文へのスキップリンクがある', () => {
+  const html = buildPage()
+  assert.match(html, /href="#main-content"/)
+  assert.match(html, /id="main-content"/)
+  assert.match(html, /id="toc-search"/)
+  assert.match(html, /id="page-toc"/)
+  assert.match(html, /aria-live="polite"/)
 })

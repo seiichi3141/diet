@@ -21,77 +21,73 @@ function signed(x: number, unit: string): string {
 }
 
 const DASHBOARD_CSS = `
-  /* リード: 現在地を数字で示す */
-  .lead { padding: 56px 0 40px; }
-  .lead h1 {
-    font-family: var(--serif); font-size: 30px; line-height: 1.5;
-    margin: 0 0 10px; letter-spacing: 0.01em; font-weight: 600;
-  }
-  .lead .dek { font-size: 15px; color: var(--ink-soft); margin: 0; }
-
-  .headline {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 4px; margin: 36px 0 8px;
-    border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule);
-  }
-  .headline .item { padding: 20px 0 18px; }
-  .headline .item + .item { border-left: 1px solid var(--rule); padding-left: 20px; }
-  .headline .k { font-size: 11px; letter-spacing: 0.08em; color: var(--ink-faint); display: block; }
-  .headline .v {
-    font-family: var(--num); font-size: 34px; font-weight: 600;
-    letter-spacing: -0.02em; line-height: 1.15; display: block; margin-top: 6px;
-  }
-  .headline .v.is-good { color: var(--accent); }
-  .headline .n { font-size: 12px; color: var(--ink-soft); display: block; margin-top: 4px; }
-
-  /* 進捗 */
-  .track { margin: 28px 0 8px; }
-  .track-bar { height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; }
-  .track-fill { height: 100%; background: var(--accent); border-radius: 3px; }
-  .track-ends {
-    display: flex; justify-content: space-between;
-    font-size: 12px; color: var(--ink-faint); margin-top: 8px;
-  }
-
-  /* 本文セクション */
-  .section { padding-top: 44px; }
-  .section > h2 {
-    font-family: var(--serif); font-size: 20px; font-weight: 600;
-    margin: 0 0 6px; letter-spacing: 0.01em;
-  }
-  .section > .note { font-size: 14px; color: var(--ink-soft); margin: 0 0 20px; }
-  .chart { position: relative; height: 300px; }
-
-  /* 読み取り: グラフの下に置く一言 */
-  .readout {
-    border-left: 2px solid var(--accent); background: var(--accent-soft);
-    padding: 12px 16px; margin-top: 18px; font-size: 14px; border-radius: 0 4px 4px 0;
-  }
-  .readout strong { font-family: var(--num); font-weight: 600; }
-
-  /* 表 */
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  thead th {
-    text-align: left; font-size: 11px; letter-spacing: 0.06em; font-weight: 600;
-    color: var(--ink-faint); padding: 0 12px 8px 0; border-bottom: 1px solid var(--ink);
-  }
-  tbody td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  tbody td.num { font-family: var(--num); white-space: nowrap; }
-  tbody td.memo { color: var(--ink-soft); font-size: 13px; }
-  .empty { color: var(--ink-faint); font-size: 14px; }
+  .lead { padding: 32px 0 24px; }
+  .lead h1 { font-size: 26px; line-height: 1.4; margin: 0 0 8px; font-weight: 600; letter-spacing: -.025em; }
+  .lead .dek { color: var(--ink-soft); margin: 0; max-width: 750px; }
+  .headline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .headline .item { padding: 20px 22px; border: 1px solid var(--rule); border-radius: 8px; }
+  .headline .k { color: var(--ink-soft); display: block; font-size: 13px; }
+  .headline .v { font-size: 34px; font-weight: 600; letter-spacing: -.035em; font-variant-numeric: tabular-nums; line-height: 1.3; display: block; margin-top: 8px; }
+  .headline .v.is-good { color: var(--green); }
+  .headline .n { font-size: 12px; color: var(--ink-soft); display: block; margin-top: 7px; }
+  .dashboard-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; align-items: start; }
+  .dashboard-main { min-width: 0; display: grid; gap: 20px; }
+  .dashboard-side { min-width: 0; position: sticky; top: 24px; display: grid; gap: 20px; }
+  .side-panel { padding: 20px; }
+  .side-panel h2 { margin: 0 0 16px; font-size: 15px; font-weight: 600; }
+  .goal-number { font-size: 30px; font-weight: 600; letter-spacing: -.03em; margin: 4px 0 14px; }
+  .goal-number small { font-size: 14px; color: var(--ink-soft); font-weight: 400; }
+  .side-panel p { color: var(--ink-soft); font-size: 12px; }
+  .side-panel dl { margin: 18px 0; }
+  .side-panel dl > div { display: flex; justify-content: space-between; gap: 12px; margin: 10px 0; font-size: 13px; }
+  .side-panel dt { color: var(--ink-soft); }
+  .side-panel dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 500; }
+  .side-panel .button-link { width: 100%; }
+  .side-links { display: grid; gap: 8px; }
+  .track-bar { height: 8px; background: #eaeef2; border-radius: 8px; overflow: hidden; }
+  .track-fill { height: 100%; background: #2da44e; border-radius: 8px; }
+  .track-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-soft); margin-top: 8px; }
+  .section { border: 1px solid var(--rule); border-radius: 8px; padding: 22px; min-width: 0; }
+  .section > h2 { font-size: 16px; font-weight: 600; margin: 0 0 6px; }
+  .section > .note { font-size: 13px; color: var(--ink-soft); margin: 0 0 20px; }
+  .chart { position: relative; height: 280px; }
+  .readout { padding: 12px 14px; background: var(--bg-soft); border-radius: 6px; margin: 16px 0 0; font-size: 12px; color: var(--ink-soft); }
+  .readout strong { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .section .table-scroll { margin-top: 18px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { text-align: left; font-size: 12px; font-weight: 600; color: var(--ink-soft); padding: 10px 12px; border-bottom: 1px solid var(--rule); background: var(--bg-soft); }
+  tbody td { padding: 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tbody tr:last-child td { border: 0; }
+  tbody tr:hover { background: var(--bg-soft); }
+  td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  td.memo { color: var(--ink-soft); font-size: 12px; }
+  .empty { color: var(--ink-soft); font-size: 14px; padding: 16px; }
 `
-
 const DASHBOARD_MOBILE_CSS = `
+  @media (max-width: 960px) {
+    .dashboard-layout { grid-template-columns: minmax(0, 1fr); }
+    .dashboard-side { position: static; grid-row: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dashboard-side .quick-links { display: none; }
+  }
   @media (max-width: 640px) {
-    .lead { padding: 32px 0 24px; }
+    .lead { padding: 24px 0 20px; }
     .lead h1 { font-size: 23px; }
-    .headline { grid-template-columns: 1fr 1fr; }
-    .headline .item:nth-child(3) { grid-column: 1 / -1; border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); }
-    .headline .item:nth-child(2) { padding-left: 16px; }
-    .headline .v { font-size: 28px; }
-    .section { padding-top: 34px; }
+    .lead .dek { font-size: 13px; }
+    .lead .page-heading > .badge { display: none; }
+    .headline { gap: 8px; margin-bottom: 16px; }
+    .headline .item { padding: 14px 10px; }
+    .headline .v { font-size: 25px; }
+    .headline .k, .headline .n { font-size: 11px; }
+    .headline .v small { font-size: 12px !important; }
+    .dashboard-layout, .dashboard-main { gap: 16px; }
+    .dashboard-side { grid-template-columns: 1fr; gap: 12px; }
+    .dashboard-side .nutrition-panel { display: none; }
+    .side-panel { padding: 16px; }
+    .side-panel dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; margin: 10px 0; }
+    .side-panel dl > div { font-size: 12px; }
+    .section { padding: 18px 14px; }
+    .section h2 { font-size: 15px; }
     .chart { height: 250px; }
-    .table-scroll { overflow-x: auto; }
     .table-scroll table { min-width: 460px; }
   }
 `
@@ -170,11 +166,12 @@ export function buildDashboardHtml(data: DashboardData): string {
 </head>
 <body>
 ${headerHtml('dashboard')}
-<main class="wrap">
+<main id="main-content" class="wrap" tabindex="-1">
 
   <div class="lead">
-    <h1>46歳・${profile.heightCm}cm、<br>脂肪だけを落とす${elapsedDays}日間</h1>
-    <p class="dek">毎朝の体重・体脂肪率と、食べたもの・動いたものをすべて記録しています。目標は ${profile.goalWeight}kg（${esc(profile.goalDate)}まで）。</p>
+    <p class="eyebrow">OVERVIEW / 記録の概要</p>
+    <div class="page-heading"><h1>日々の変化を、ひと目で。</h1><span class="badge badge-green">${elapsedDays}日目の記録</span></div>
+    <p class="dek">${profile.age}歳・${profile.heightCm}cm。体重・食事・運動を記録して、減量と体力づくりを続けています。${latest ? ` 最終計測 ${esc(latest.date)}` : ' 体重はまだ記録されていません。'}</p>
   </div>
 
   <div class="headline">
@@ -189,59 +186,52 @@ ${headerHtml('dashboard')}
       <span class="n">${bodyFatDelta !== null ? `開始 ${weights[0].bodyFat}% → ${signed(bodyFatDelta, 'pt')}` : '—'}</span>
     </div>
     <div class="item">
-      <span class="k">内訳の変化</span>
+      <span class="k">脂肪量の変化（推定）</span>
       <span class="v is-good">${fatDelta !== null ? signed(fatDelta, '') : '—'}<small style="font-size:16px;font-weight:400"> kg</small></span>
       <span class="n">${leanDelta !== null ? `脂肪の増減。除脂肪量は ${signed(leanDelta, 'kg')}` : '—'}</span>
     </div>
   </div>
 
-  <div class="track">
-    <div class="track-bar"><div class="track-fill" style="width:${prog.percent}%"></div></div>
-    <div class="track-ends">
-      <span>${profile.startWeight}kg</span>
-      <span>進捗 ${prog.percent}%　残り ${prog.remaining}kg${projection ? `　達成予測 ${esc(projection)}` : ''}</span>
-      <span>${profile.goalWeight}kg</span>
-    </div>
-  </div>
-
-  <section class="section">
+  <div class="dashboard-layout">
+  <div class="dashboard-main">
+  <section class="section" id="weight">
     <h2>体重の推移</h2>
     <p class="note">日々の体重は水分や食事内容で ±0.5kg ほど振れます。トレンドを見るための 7日移動平均を重ねています。</p>
-    <div class="chart"><canvas id="weight-chart"></canvas></div>
-    <p class="readout">判断材料になるのは移動平均の線だけです。1日の上下、とくに運動した翌日や飲酒の翌朝の変動は、ほぼ水分によるものでした。</p>
+    <div class="chart"><canvas id="weight-chart" role="img" aria-label="体重と7日移動平均の推移">体重と7日移動平均の推移。概要は前後のテキストをご覧ください。</canvas></div>
+    <p class="readout">薄い線は日々の計測、青い線は7日移動平均です。日ごとの変動と継続的な傾向を合わせて確認できます。</p>
   </section>
 
-  <section class="section">
-    <h2>体重の中身 — 脂肪と除脂肪量</h2>
+  <section class="section" id="composition">
+    <h2>体組成の推移</h2>
     <p class="note">体重の増減だけでは、脂肪が減ったのか筋肉が減ったのか分かりません。体脂肪率から内訳を算出しています。</p>
-    <div class="chart"><canvas id="comp-chart"></canvas></div>
+    <div class="chart"><canvas id="comp-chart" role="img" aria-label="推定脂肪量と除脂肪量の推移">推定脂肪量と除脂肪量の推移。概要は前後のテキストをご覧ください。</canvas></div>
     ${
       fatDelta !== null && leanDelta !== null
-        ? `<p class="readout">${elapsedDays}日で脂肪が <strong>${signed(fatDelta, 'kg')}</strong>、除脂肪量（筋肉・骨・水分）は <strong>${signed(leanDelta, 'kg')}</strong>。減った分のほとんどが脂肪です。</p>`
+        ? `<p class="readout">${elapsedDays}日で脂肪が <strong>${signed(fatDelta, 'kg')}</strong>、除脂肪量（筋肉・骨・水分）は <strong>${signed(leanDelta, 'kg')}</strong>。家庭用体組成計の測定値から算出した目安です。</p>`
         : ''
     }
   </section>
 
-  <section class="section">
-    <h2>食べたもの</h2>
+  <section class="section" id="nutrition">
+    <h2>食事と栄養</h2>
     <p class="note">1日の目標は ${profile.dailyCalorieTarget}kcal / タンパク質 ${profile.dailyProteinTarget}g。カロリーを下げる分はご飯（炭水化物）で調整し、タンパク源は減らしません。</p>
-    <div class="chart"><canvas id="calorie-chart"></canvas></div>
+    <div class="chart"><canvas id="calorie-chart" role="img" aria-label="摂取カロリーとタンパク質の推移">摂取カロリーとタンパク質の推移。概要は前後のテキストをご覧ください。</canvas></div>
     ${
       avgKcal !== null
-        ? `<p class="readout">直近7日の平均は <strong>${avgKcal}kcal</strong> / タンパク質 <strong>${avgProtein}g</strong>。外食や飲み会のある日も含めた数字です。</p>`
+        ? `<p class="readout">直近${recentDaily.length}記録日の平均は <strong>${avgKcal}kcal</strong> / タンパク質 <strong>${avgProtein}g</strong>。外食や飲み会のある日も含めた数字です。</p>`
         : ''
     }
   </section>
 
-  <section class="section">
-    <h2>動いたもの</h2>
+  <section class="section" id="activity">
+    <h2>最近の運動</h2>
     <p class="note">卓球（週1〜2回）、自宅での自重トレ、20mシャトルラン。ジムには通っていません。</p>
     ${
       lastWeek
-        ? `<p class="readout">直近の週は <strong>${lastWeek.count}回・${lastWeek.minutes}分</strong>。筋トレを続けているかどうかが、除脂肪量を保てるかを分けています。</p>`
+        ? `<p class="readout">${esc(lastWeek.weekStart)}からの記録週は <strong>${lastWeek.count}回・${lastWeek.minutes}分</strong>。下の一覧で直近8件の運動内容を確認できます。</p>`
         : ''
     }
-    <div class="table-scroll">
+    <div class="table-scroll" tabindex="0" role="region" aria-label="最近の運動一覧（横にスクロールできます）">
     ${
       exerciseRows
         ? `<table><thead><tr><th>日付</th><th>種類</th><th>時間</th><th>内容</th></tr></thead><tbody>${exerciseRows}</tbody></table>`
@@ -250,12 +240,34 @@ ${headerHtml('dashboard')}
     </div>
   </section>
 
+  </div>
+  <aside class="dashboard-side" aria-label="目標とショートカット">
+    <section class="panel side-panel">
+      <h2>目標までの進捗</h2>
+      <span class="badge badge-green">目標 ${esc(profile.goalDate)}</span>
+      <div class="goal-number">${profile.goalWeight} <small>kg を目指して</small></div>
+      <div class="track-bar" role="progressbar" aria-label="目標体重への進捗" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.max(0, prog.percent)}"><div class="track-fill" style="width:${Math.max(0, prog.percent)}%"></div></div>
+      <div class="track-ends"><span>開始 ${profile.startWeight}kg</span><span>${prog.percent}%</span></div>
+      <dl><div><dt>目標まで</dt><dd>${prog.remaining} kg</dd></div><div><dt>達成予測</dt><dd>${projection ? esc(projection) : current <= profile.goalWeight ? '目標達成' : '算出できません'}</dd></div></dl>
+      <p>予測は直近2週間の記録をもとにした目安です。</p>
+      <a class="button-link" href="plan.html">計画の詳細を見る →</a>
+    </section>
+    <section class="panel side-panel nutrition-panel">
+      <h2>1日の栄養目標</h2>
+      <dl><div><dt>カロリー</dt><dd>${profile.dailyCalorieTarget.toLocaleString('ja-JP')} kcal</dd></div><div><dt>タンパク質</dt><dd>${profile.dailyProteinTarget} g</dd></div></dl>
+      <a class="button-link" href="menu.html">献立と買い物を見る →</a>
+    </section>
+    <nav class="panel side-panel quick-links" aria-label="記録の目次">
+      <h2>このページの内容</h2><div class="side-links"><a href="#weight">体重の推移</a><a href="#composition">体組成の推移</a><a href="#nutrition">食事と栄養</a><a href="#activity">最近の運動</a></div>
+    </nav>
+  </aside>
+  </div>
 </main>
 ${footerHtml(esc(data.generatedAt))}
 
 <script>
 const DATA = ${embedded};
-const INK = '#16181d', FAINT = '#9aa1af', RULE = '#e6e8ec', ACCENT = '#c2410c';
+const INK = '#1f2328', FAINT = '#656d76', RULE = '#d8dee4', ACCENT = '#0969da';
 
 Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif';
 Chart.defaults.font.size = 11;
@@ -322,7 +334,7 @@ new Chart(document.getElementById('comp-chart'), {
       {
         type: 'line', label: '脂肪量',
         data: DATA.comp.map(function (c) { return c.fatMass; }),
-        borderColor: ACCENT, backgroundColor: 'rgba(194,65,12,0.10)',
+        borderColor: ACCENT, backgroundColor: 'rgba(9,105,218,0.10)',
         borderWidth: 2, pointRadius: 0, tension: 0.3, fill: 'origin',
       },
     ],
@@ -344,7 +356,7 @@ new Chart(document.getElementById('calorie-chart'), {
       {
         type: 'bar', label: '摂取カロリー',
         data: DATA.daily.map(function (d) { return d.calories; }),
-        backgroundColor: 'rgba(194,65,12,0.22)', borderColor: ACCENT, borderWidth: 0,
+        backgroundColor: 'rgba(9,105,218,0.32)', borderColor: ACCENT, borderWidth: 0,
         yAxisID: 'y', order: 3,
       },
       {

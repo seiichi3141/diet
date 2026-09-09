@@ -14,62 +14,64 @@ export function rewriteMdLinks(md: string): string {
 }
 
 const MD_CSS = `
-  .lead { padding: 56px 0 8px; }
-  .lead h1 {
-    font-family: var(--serif); font-size: 30px; line-height: 1.5;
-    margin: 0 0 10px; letter-spacing: 0.01em; font-weight: 600;
-  }
-  .lead .dek { font-size: 15px; color: var(--ink-soft); margin: 0; }
-
-  .md { padding-bottom: 8px; }
+  .lead { padding: 32px 0 24px; border-bottom: 1px solid var(--rule); margin-bottom: 24px; }
+  .lead h1 { font-size: 26px; line-height: 1.4; margin: 0 0 8px; font-weight: 600; }
+  .lead .dek { font-size: 14px; color: var(--ink-soft); margin: 0; }
+  .docs-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 28px; align-items: start; }
+  .toc-panel { position: sticky; top: 24px; border: 1px solid var(--rule); border-radius: 8px; background: var(--bg); overflow: hidden; }
+  .toc-panel summary { padding: 14px 16px; font-weight: 600; cursor: pointer; background: var(--bg-soft); font-size: 13px; }
+  .toc-body { padding: 12px; }
+  .search-label { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 6px; }
+  #toc-search { width: 100%; min-height: 36px; padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); color: var(--ink); }
+  #page-toc { max-height: calc(100vh - 240px); overflow-y: auto; margin: 12px -4px 0; padding: 0 4px; list-style: none; }
+  #page-toc li { margin: 2px 0; }
+  #page-toc a { display: block; color: var(--ink-soft); text-decoration: none; font-size: 12px; padding: 7px 10px; border-radius: 6px; overflow-wrap: anywhere; }
+  #page-toc a:hover { color: var(--ink); background: var(--bg-soft); }
+  #page-toc a[aria-current="location"] { color: var(--accent); background: #ddf4ff; font-weight: 600; box-shadow: inset 2px 0 var(--accent); }
+  #page-toc .toc-sub a { padding-left: 22px; }
+  .toc-status { color: var(--ink-soft); font-size: 12px; margin: 8px 0 0; }
+  .md { border: 1px solid var(--rule); border-radius: 8px; padding: 28px 32px; min-width: 0; overflow-wrap: anywhere; }
   .md > h1:first-child { display: none; }
-  .md h2 {
-    font-family: var(--serif); font-size: 21px; font-weight: 600;
-    margin: 52px 0 14px; padding-top: 18px; border-top: 2px solid var(--ink);
-    letter-spacing: 0.01em;
-  }
-  .md h3 { font-size: 16px; font-weight: 600; margin: 32px 0 8px; }
-  .md h4 { font-size: 14px; font-weight: 600; margin: 24px 0 6px; color: var(--ink-soft); }
-  .md p { font-size: 15px; margin: 0 0 16px; }
-  .md ul, .md ol { padding-left: 20px; margin: 0 0 16px; }
-  .md li { font-size: 15px; margin-bottom: 6px; }
-  .md li::marker { color: var(--ink-faint); }
+  .md > p:first-of-type { color: var(--ink-soft); }
+  .md h2 { font-size: 21px; font-weight: 600; margin: 40px 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); line-height: 1.5; }
+  .md h3 { font-size: 17px; font-weight: 600; margin: 30px 0 12px; line-height: 1.5; }
+  .md h4 { font-size: 15px; margin: 24px 0 10px; }
+  .md h2:target, .md h3:target { background: var(--accent-soft); border-radius: 4px; }
+  .md p { margin: 0 0 16px; }
+  .md ul, .md ol { padding-left: 22px; margin: 0 0 18px; }
+  .md li { margin-bottom: 6px; }
   .md strong { font-weight: 600; }
-  .md a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,65,12,0.3); }
-  .md a:hover { border-bottom-color: var(--accent); }
-
-  .md table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 0 0 22px; }
-  .md thead th {
-    text-align: left; font-size: 11px; letter-spacing: 0.06em; font-weight: 600;
-    color: var(--ink-faint); padding: 0 12px 8px 0; border-bottom: 1px solid var(--ink);
-    white-space: nowrap;
-  }
-  .md tbody td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-
-  .md code {
-    background: var(--bg-soft); padding: 2px 6px; border-radius: 3px;
-    font-family: var(--num); font-size: 12.5px;
-  }
-  .md pre {
-    background: var(--bg-soft); padding: 14px 16px; border-radius: 4px;
-    overflow-x: auto; border: 1px solid var(--rule);
-  }
-  .md pre code { background: none; padding: 0; font-size: 12.5px; line-height: 1.7; }
-  .md blockquote {
-    border-left: 2px solid var(--accent); background: var(--accent-soft);
-    margin: 0 0 18px; padding: 12px 16px; border-radius: 0 4px 4px 0;
-  }
-  .md blockquote p:last-child { margin-bottom: 0; }
-  .md hr { border: 0; border-top: 1px solid var(--rule); margin: 36px 0; }
+  .md a { text-decoration: none; }
+  .md a:hover { text-decoration: underline; }
+  .md .table-scroll { margin: 0 0 22px; border: 1px solid var(--rule); border-radius: 6px; }
+  .md table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .md thead th { text-align: left; font-size: 12px; font-weight: 600; padding: 10px 12px; background: var(--bg-soft); border-bottom: 1px solid var(--rule); white-space: nowrap; }
+  .md tbody td { padding: 11px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .md tbody tr:last-child td { border-bottom: 0; }
+  .md tbody tr:nth-child(even) { background: #f6f8fa80; }
+  .md code { background: #eff1f3; padding: 2px 5px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 12px; }
+  .md pre { background: var(--bg-soft); padding: 16px; border-radius: 6px; overflow-x: auto; }
+  .md pre code { padding: 0; background: none; }
+  .md blockquote { border-left: 3px solid var(--rule); color: var(--ink-soft); margin: 0 0 18px; padding: 0 16px; }
+  .md hr { border: 0; border-top: 1px solid var(--rule); margin: 32px 0; }
 `
-
 const MD_MOBILE_CSS = `
-  @media (max-width: 640px) {
-    .lead { padding: 32px 0 4px; }
-    .lead h1 { font-size: 23px; }
-    .md h2 { font-size: 18px; margin-top: 40px; }
-    .md p, .md li { font-size: 14.5px; }
-    .md .table-scroll { overflow-x: auto; }
+  @media (max-width: 960px) {
+    .docs-layout { grid-template-columns: 220px minmax(0, 1fr); gap: 20px; }
+    .md { padding: 20px; }
+  }
+  @media (max-width: 760px) {
+    .docs-layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .toc-panel { position: static; }
+    #page-toc { max-height: 240px; }
+    #page-toc a { min-height: 40px; padding-top: 10px; }
+    .lead { padding: 24px 0 20px; margin-bottom: 16px; }
+    .lead h1 { font-size: 24px; }
+    .lead .dek { font-size: 13px; }
+    .md { padding: 18px 16px; }
+    .md h2 { font-size: 19px; margin-top: 32px; }
+    .md h3 { font-size: 16px; }
+    .md table { min-width: 480px; }
   }
 `
 
@@ -111,12 +113,24 @@ export function buildMarkdownPage(opts: { title: string; md: string; active: Pag
 </head>
 <body>
 ${headerHtml(opts.active)}
-<main class="wrap">
+<main id="main-content" class="wrap" tabindex="-1">
   <div class="lead">
     <h1>${esc(opts.title)}</h1>
     <p class="dek">${esc(lead.dek)}</p>
   </div>
-  <article id="content" class="md"></article>
+  <div class="docs-layout">
+    <details class="toc-panel" open>
+      <summary>このページの目次</summary>
+      <div class="toc-body">
+        <label class="search-label" for="toc-search">見出し・料理名を検索</label>
+        <input id="toc-search" type="search" placeholder="キーワードで絞り込み" autocomplete="off" aria-controls="page-toc">
+        <nav aria-label="ページ内目次"><ul id="page-toc"></ul></nav>
+        <p id="toc-status" class="toc-status" aria-live="polite"></p>
+      </div>
+    </details>
+    <article id="content" class="md"></article>
+  </div>
+  <noscript><p>本文の表示にはJavaScriptが必要です。<a href="${opts.active}.md">Markdown版を読む</a></p></noscript>
 </main>
 ${footerHtml(esc(opts.generatedAt))}
 
@@ -149,9 +163,64 @@ document.getElementById('content').innerHTML = marked.parse(MD);
 document.querySelectorAll('.md table').forEach(function (t) {
   const box = document.createElement('div');
   box.className = 'table-scroll';
+  box.tabIndex = 0;
+  box.setAttribute('role', 'region');
+  box.setAttribute('aria-label', '表（横にスクロールできます）');
   t.parentNode.insertBefore(box, t);
   box.appendChild(t);
 });
+
+// 既存の見出しIDを利用し、献立からのリンク先を保ったまま目次を作る。
+const tocPanel = document.querySelector('.toc-panel');
+function isCompact() { return window.matchMedia && window.matchMedia('(max-width: 760px)').matches; }
+if (isCompact()) tocPanel.removeAttribute('open');
+const headings = Array.from(document.querySelectorAll('.md h2,.md h3'));
+const toc = document.getElementById('page-toc');
+const status = document.getElementById('toc-status');
+const items = headings.map(function (heading) {
+  const li = document.createElement('li');
+  if (heading.tagName === 'H3') li.className = 'toc-sub';
+  const a = document.createElement('a');
+  a.href = '#' + encodeURIComponent(heading.id);
+  a.textContent = heading.textContent;
+  a.addEventListener('click', function () {
+    if (isCompact()) tocPanel.removeAttribute('open');
+  });
+  li.appendChild(a);
+  toc.appendChild(li);
+  return { li: li, link: a, heading: heading };
+});
+function normalizeSearch(value) { return value.normalize('NFKC').toLowerCase().trim(); }
+document.getElementById('toc-search').addEventListener('input', function (event) {
+  const query = normalizeSearch(event.target.value);
+  let count = 0;
+  items.forEach(function (item) {
+    item.li.hidden = !normalizeSearch(item.heading.textContent).includes(query);
+    if (!item.li.hidden) count += 1;
+  });
+  status.textContent = query ? (count ? count + '件の見出し' : '該当する見出しがありません') : '';
+});
+function markCurrent(id) {
+  items.forEach(function (item) {
+    if (item.heading.id === id) item.link.setAttribute('aria-current', 'location');
+    else item.link.removeAttribute('aria-current');
+  });
+}
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(function (entries) {
+    const visible = entries.filter(function (entry) { return entry.isIntersecting; });
+    if (visible.length) markCurrent(visible[0].target.id);
+  }, { rootMargin: '0px 0px -65% 0px' });
+  headings.forEach(function (heading) { observer.observe(heading); });
+}
+function followHash() {
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+  const target = document.getElementById(id);
+  if (target) { target.scrollIntoView(); markCurrent(id); }
+}
+window.addEventListener('hashchange', followHash);
+if (location.hash) requestAnimationFrame(followHash);
 </script>
 </body>
 </html>

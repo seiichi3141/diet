@@ -80,7 +80,7 @@ test('他ページへのナビゲーションリンクがある（タブボタ�
   assert.ok(html.includes('href="plan.html"'))
   assert.ok(html.includes('href="menu.html"'))
   assert.ok(html.includes('href="recipes.html"'))
-  assert.match(html, /<a class="nav-link is-active" href="dashboard\.html">/)
+  assert.match(html, /<a class="nav-link is-active" href="dashboard\.html" aria-current="page">/)
   assert.doesNotMatch(html, /<button/)
 })
 
