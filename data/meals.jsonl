@@ -190,3 +190,4 @@
 {"date":"2026-09-10","mealType":"breakfast","description":"朝B: ご飯100g + 納豆 + 卵1個 + 味噌汁（豆腐・わかめ）（メニュー通り）","calories":362,"protein":19,"fat":12,"carbs":43}
 {"date":"2026-09-10","mealType":"snack","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-09-10","mealType":"lunch","description":"サバ缶とキャベツの味噌煮 + ご飯100g + 味噌汁（サバは水煮1/2缶、味噌汁は豆腐・わかめと仮定。献立492kcalからご飯50g分78kcal・きんぴら80kcalを引き、味噌汁40kcalを加算。PFCは概算）","calories":374,"protein":30,"fat":16,"carbs":35}
+{"date":"2026-09-10","mealType":"dinner","description":"豆腐ステーキ + 小松菜炒め + ご飯100g（木綿豆腐200g・小松菜100g、各料理に油小さじ1/2、醤油・みりん・片栗粉込みの材料別概算。納豆・卵の追加なし）","calories":420,"protein":20,"fat":15,"carbs":53}
