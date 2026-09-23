@@ -261,3 +261,5 @@
 {"date":"2026-09-23","mealType":"breakfast","description":"朝A: オートミール30g + オイコス1個 + バナナ1/2 + ゆで卵1個（メニュー通り）","calories":327,"protein":20,"fat":8,"carbs":45}
 {"date":"2026-09-23","mealType":"snack","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-09-23","mealType":"lunch","description":"コンビニ: サラダチキンスティック2本（3種のハーブ&スパイス・スモーク）+ 新生姜とわかめおにぎり + 半熟ゆで卵","calories":400,"protein":33,"fat":10,"carbs":40}
+{"date":"2026-09-23","mealType":"dinner","description":"レバーと豆苗の醤油炒め（レバー約100g想定）+ ご飯150g","calories":415,"protein":25,"fat":9,"carbs":62}
+{"date":"2026-09-23","mealType":"snack","description":"缶ハイボール350ml（7%想定）","calories":170,"protein":0,"fat":0,"carbs":0}
