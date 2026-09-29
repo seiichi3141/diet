@@ -291,3 +291,5 @@
 {"date":"2026-09-28","mealType":"snack","description":"プロテイン（夜・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-09-29","mealType":"lunch","description":"さち福や CAFE（ららぽーと海老名）: ほっけの塩焼きとたっぷり大根おろし定食・白米小盛り（味噌汁・小鉢付き想定）","calories":560,"protein":41,"fat":16,"carbs":58}
 {"date":"2026-09-29","mealType":"snack","description":"ザバス ミルクプロテイン 脂肪0 200ml","calories":102,"protein":15,"fat":0,"carbs":10}
+{"date":"2026-09-29","mealType":"dinner","description":"焼鳥日高（小田原）: ガツ刺し","calories":100,"protein":13,"fat":5,"carbs":1}
+{"date":"2026-09-29","mealType":"snack","description":"ハイボール1杯（焼鳥日高）","calories":80,"protein":0,"fat":0,"carbs":0}
