@@ -304,3 +304,5 @@
 {"date":"2026-10-01","mealType":"breakfast","description":"オイコス1個 + バナナ1本","calories":182,"protein":13,"fat":0,"carbs":33}
 {"date":"2026-10-01","mealType":"snack","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-10-01","mealType":"lunch","description":"コンビニ: サラダチキンスティック1本 + 鮭おにぎり1個","calories":250,"protein":18,"fat":4,"carbs":38}
+{"date":"2026-10-01","mealType":"dinner","description":"磯丸水産: お好み焼き（野菜入り・イカトッピング・1枚）+ お通し + 蟹味噌甲羅焼き + いわしのみりん串焼き","calories":970,"protein":53,"fat":43,"carbs":80}
+{"date":"2026-10-01","mealType":"snack","description":"レモンサワー2杯 + ハイボール2杯（磯丸水産）","calories":400,"protein":0,"fat":0,"carbs":16}
