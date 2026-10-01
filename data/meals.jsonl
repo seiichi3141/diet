@@ -306,3 +306,5 @@
 {"date":"2026-10-01","mealType":"lunch","description":"コンビニ: サラダチキンスティック1本 + 鮭おにぎり1個","calories":250,"protein":18,"fat":4,"carbs":38}
 {"date":"2026-10-01","mealType":"dinner","description":"磯丸水産: お好み焼き（野菜入り・イカトッピング・1枚）+ お通し + 蟹味噌甲羅焼き + いわしのみりん串焼き","calories":970,"protein":53,"fat":43,"carbs":80}
 {"date":"2026-10-01","mealType":"snack","description":"レモンサワー2杯 + ハイボール2杯（磯丸水産）","calories":400,"protein":0,"fat":0,"carbs":16}
+{"date":"2026-10-01","mealType":"dinner","description":"磯丸水産（追加）: だし巻き卵2切れ","calories":90,"protein":6,"fat":6,"carbs":2}
+{"date":"2026-10-01","mealType":"snack","description":"ヤマブドウハイボール + コークハイ（磯丸水産）","calories":280,"protein":0,"fat":0,"carbs":30}
