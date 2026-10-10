@@ -347,3 +347,6 @@
 {"date":"2026-10-09","mealType":"lunch","description":"ご飯150g（量は想定）+ 味噌汁 + 納豆2パック","calories":474,"protein":23,"fat":12,"carbs":72}
 {"date":"2026-10-09","mealType":"dinner","description":"サバ缶の味噌煮（サバ水煮缶1/2想定）+ キャベツ・もやし・キムチ・鮭1切れ入り（ご飯なし）","calories":350,"protein":42,"fat":14,"carbs":15}
 {"date":"2026-10-09","mealType":"snack","description":"プロテイン（夜・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-10-10","mealType":"breakfast","description":"オイコス1個 + バナナ1本","calories":182,"protein":13,"fat":0,"carbs":33}
+{"date":"2026-10-10","mealType":"snack","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-10-10","mealType":"lunch","description":"卓球大会の会場で: 鮭おにぎり1個 + サラダチキンバー2本","calories":330,"protein":29,"fat":6,"carbs":41}
