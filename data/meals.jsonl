@@ -360,3 +360,7 @@
 {"date":"2026-10-12","mealType":"breakfast","description":"オイコス1個 + オートミール雑炊（オートミール40g + 卵1個 + 余り野菜）","calories":432,"protein":25,"fat":8,"carbs":40}
 {"date":"2026-10-12","mealType":"snack","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-10-12","mealType":"lunch","description":"鶏むねのカレー粉焼き150g + ブロッコリーの塩ゆで（ご飯なし）","calories":226,"protein":35,"fat":6,"carbs":8}
+{"date":"2026-10-12","mealType":"dinner","description":"はま寿司: 茶碗蒸し","calories":70,"protein":5,"fat":3,"carbs":5}
+{"date":"2026-10-12","mealType":"snack","description":"ハイボール1杯（はま寿司）","calories":80,"protein":0,"fat":0,"carbs":0}
+{"date":"2026-10-12","mealType":"dinner","description":"はま寿司: 真いか・かつ締め真鯛・赤貝 各1皿（シャリ普通想定）","calories":220,"protein":14,"fat":2,"carbs":42}
+{"date":"2026-10-12","mealType":"dinner","description":"はま寿司: うどん1杯","calories":240,"protein":7,"fat":1,"carbs":50}
