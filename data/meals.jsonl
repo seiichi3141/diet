@@ -441,3 +441,6 @@
 {"date":"2026-10-26","mealType":"dinner","description":"鮭と豆苗の焼き物（鮭1切れ・豆苗）+ ご飯150g + 納豆","calories":504,"protein":37,"fat":14,"carbs":65}
 {"date":"2026-10-26","mealType":"snack","description":"目玉焼き1個","calories":90,"protein":6,"fat":7,"carbs":0}
 {"date":"2026-10-26","mealType":"snack","description":"プロテイン（夜・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-10-27","mealType":"breakfast","description":"朝B: ご飯100g + 納豆 + 卵1個 + 味噌汁（豆腐・わかめ）（メニュー通り）","calories":362,"protein":19,"fat":12,"carbs":43}
+{"date":"2026-10-27","mealType":"snack","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-10-27","mealType":"lunch","description":"バナナ1本（昼食代わり）","calories":90,"protein":1,"fat":0,"carbs":21}
