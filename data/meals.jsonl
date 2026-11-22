@@ -558,3 +558,6 @@
 {"date":"2026-11-21","mealType":"breakfast","description":"小松菜の炒め物（小松菜100g・油小さじ1想定）","calories":60,"protein":2,"fat":4,"carbs":3}
 {"date":"2026-11-21","mealType":"dinner","description":"砂肝200gのにんにく炒め + 卵と豆腐のレンジ蒸し（卵1個・豆腐150g想定）","calories":365,"protein":51,"fat":14,"carbs":6}
 {"date":"2026-11-21","mealType":"snack","description":"プロテイン（夜・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-11-22","mealType":"breakfast","description":"オイコス","calories":92,"protein":12,"fat":0,"carbs":12}
+{"date":"2026-11-22","mealType":"breakfast","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
+{"date":"2026-11-22","mealType":"lunch","description":"もつ鍋（白モツ150g・野菜）+ ご飯150g（昼夕兼用）","calories":694,"protein":24,"fat":28,"carbs":77}
