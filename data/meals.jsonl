@@ -579,3 +579,4 @@
 {"date":"2026-11-27","mealType":"breakfast","description":"プロテイン（朝・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
 {"date":"2026-11-27","mealType":"lunch","description":"オートミール雑炊（オートミール40g + 卵1個 + 余り野菜）+ 冷奴（豆腐150g）","calories":455,"protein":23,"fat":14,"carbs":30}
 {"date":"2026-11-27","mealType":"dinner","description":"サラダチキン（100g想定）+ 冷奴（豆腐150g）","calories":221,"protein":33,"fat":7,"carbs":2}
+{"date":"2026-11-27","mealType":"snack","description":"プロテイン（夜・水割り）","calories":110,"protein":20,"fat":1,"carbs":3}
